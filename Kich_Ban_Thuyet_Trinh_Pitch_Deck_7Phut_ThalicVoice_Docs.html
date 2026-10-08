@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kịch Bản Thuyết Trình Pitch Deck 7 Phút — Chuẩn Câu Từ & Nhịp Điệu Thalic Voice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #f0f4f9;
+    --paper: #ffffff;
+    --text: #1f2937;
+    --muted: #4b5563;
+    --primary: #1a73e8;
+    --primary-dark: #0d47a1;
+    --border: #e5e7eb;
+    --callout: #eff6ff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  .docs-topbar {
+    position: sticky; top: 0;
+    background: #fff;
+    border-bottom: 1px solid #dadce0;
+    padding: 10px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    z-index: 100;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .doc-info { display: flex; align-items: center; gap: 14px; }
+  .doc-icon {
+    width: 36px; height: 36px;
+    background: #2563eb; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 900; font-size: 18px;
+  }
+  .doc-title-box h1 { margin: 0; font-size: 16px; font-weight: 800; color: #111827; }
+  .doc-meta { font-size: 13px; color: #6b7280; display: flex; gap: 10px; margin-top: 2px; }
+  .doc-actions { display: flex; align-items: center; gap: 10px; }
+  .btn-action {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 14px; border-radius: 999px;
+    font-size: 13px; font-weight: 700;
+    text-decoration: none; cursor: pointer; transition: all .2s; border: none;
+  }
+  .btn-print { background: #2563eb; color: #fff; }
+  .btn-print:hover { background: #1d4ed8; }
+  .btn-download { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+  .btn-download:hover { background: #d1fae5; }
+  .btn-prop { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+  .btn-prop:hover { background: #fde68a; }
+
+  .docs-container { max-width: 860px; margin: 28px auto 80px; padding: 0 16px; }
+  .docs-page {
+    background: var(--paper);
+    padding: 56px 64px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.06);
+    border-radius: 6px;
+    min-height: 1000px;
+  }
+
+  .main-heading { font-size: 24px; font-weight: 900; color: #0f2b48; margin: 0 0 6px; line-height: 1.3; }
+  .main-sub { font-size: 16px; font-weight: 700; color: #2563eb; margin: 0 0 18px; }
+  
+  .lean-badge-banner {
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    border-radius: 10px;
+    padding: 12px 18px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+  }
+  .lean-badge-banner strong { color: #065f46; font-size: 15px; }
+
+  .meta-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 14px; background: #f8fafc; border: 1px solid #e2e8f0;
+    border-radius: 10px; padding: 12px 18px; font-size: 13.5px; margin-bottom: 28px;
+  }
+  .meta-item strong { display: block; color: #64748b; font-size: 11px; text-transform: uppercase; }
+  .meta-item span { color: #0f172a; font-weight: 800; font-size: 14px; }
+
+  h2.sec-title {
+    font-size: 20px; font-weight: 900; color: #0f2b48;
+    margin: 36px 0 16px; padding-bottom: 6px; border-bottom: 2px solid #e2e8f0;
+  }
+  .scqa-badge {
+    display: inline-block; padding: 2px 8px; border-radius: 4px;
+    font-size: 12px; font-weight: 800; text-transform: uppercase;
+  }
+  .badge-s { background: #e0f2fe; color: #0369a1; }
+  .badge-c { background: #fef2f2; color: #b91c1c; }
+  .badge-q { background: #fef9c3; color: #854d0e; }
+  .badge-a { background: #dcfce7; color: #15803d; }
+
+  h3.slide-title {
+    font-size: 17px; font-weight: 800; color: #1d4ed8;
+    margin: 26px 0 10px; display: flex; align-items: center; justify-content: space-between;
+    background: #f8fafc; padding: 8px 14px; border-left: 4px solid #2563eb; border-radius: 0 6px 6px 0;
+  }
+  .slide-time { font-size: 13px; font-weight: 800; background: #dbeafe; color: #1e40af; padding: 2px 10px; border-radius: 999px; }
+
+  .speech-box {
+    background: #f0f7ff;
+    border-left: 4px solid #3b82f6;
+    border-radius: 0 10px 10px 0;
+    padding: 16px 20px;
+    margin: 10px 0 20px;
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.65;
+    color: #0c3464;
+  }
+  .speech-box p { margin: 0 0 10px; }
+  .speech-box p:last-child { margin-bottom: 0; }
+  .speech-box strong { color: #1e3a8a; font-weight: 700; }
+  .speech-box em { font-style: italic; color: #64748b; }
+
+  .action-callout {
+    background: #fffbeb; border: 1px dashed #f59e0b; border-radius: 6px;
+    padding: 10px 14px; margin: 8px 0 12px; font-size: 13.5px; color: #92400e;
+  }
+  .cue-row { font-size: 13.5px; color: #475569; margin-bottom: 6px; }
+  .cue-row strong { color: #1e293b; }
+
+  table.matrix-table {
+    width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 13.5px;
+  }
+  table.matrix-table th { background: #0f2b48; color: #fff; padding: 8px 10px; text-align: left; font-weight: 800; }
+  table.matrix-table td { padding: 8px 10px; border-bottom: 1px solid #e2e8f0; }
+
+  @page {
+    size: A4 portrait;
+    margin: 12mm 15mm 15mm 15mm;
+  }
+  @media print {
+    *, *:before, *:after {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+    html, body {
+      background: #ffffff !important;
+      color: #111827 !important;
+      font-size: 13.5px !important;
+      line-height: 1.55 !important;
+    }
+    .docs-topbar {
+      display: none !important;
+    }
+    .docs-container {
+      margin: 0 !important;
+      padding: 0 !important;
+      max-width: 100% !important;
+      width: 100% !important;
+    }
+    .docs-page {
+      box-shadow: none !important;
+      border: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      min-height: auto !important;
+      height: auto !important;
+      width: 100% !important;
+      background: transparent !important;
+    }
+    .lean-badge-banner {
+      background: #ecfdf5 !important;
+      border: 1px solid #059669 !important;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      margin-bottom: 14px !important;
+      padding: 8px 14px !important;
+    }
+    .meta-grid {
+      display: flex !important;
+      justify-content: space-between !important;
+      background: #f8fafc !important;
+      border: 1px solid #cbd5e1 !important;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      margin-bottom: 18px !important;
+      padding: 8px 14px !important;
+    }
+    h2.sec-title {
+      page-break-after: avoid;
+      break-after: avoid;
+      margin-top: 18px !important;
+      margin-bottom: 10px !important;
+      border-bottom: 2px solid #0f2b48 !important;
+      font-size: 16px !important;
+    }
+    h3.slide-title {
+      page-break-after: avoid;
+      break-after: avoid;
+      background: #f1f5f9 !important;
+      border-left: 4px solid #1d4ed8 !important;
+      color: #1e40af !important;
+      margin-top: 14px !important;
+      margin-bottom: 6px !important;
+      padding: 6px 10px !important;
+      font-size: 14px !important;
+    }
+    .slide-time {
+      background: #dbeafe !important;
+      color: #1e40af !important;
+      font-size: 11px !important;
+      padding: 2px 8px !important;
+    }
+    .cue-row {
+      page-break-after: avoid;
+      break-after: avoid;
+      color: #334155 !important;
+      font-size: 12px !important;
+      margin-bottom: 4px !important;
+    }
+    .speech-box {
+      page-break-inside: avoid;
+      break-inside: avoid;
+      background: #f8fafc !important;
+      border-left: 4px solid #2563eb !important;
+      border-top: 1px solid #e2e8f0 !important;
+      border-right: 1px solid #e2e8f0 !important;
+      border-bottom: 1px solid #e2e8f0 !important;
+      color: #0f172a !important;
+      font-size: 14px !important;
+      line-height: 1.6 !important;
+      padding: 10px 14px !important;
+      margin: 4px 0 12px !important;
+    }
+    .speech-box strong {
+      color: #0f172a !important;
+      font-weight: 800 !important;
+    }
+    .action-callout {
+      page-break-inside: avoid;
+      break-inside: avoid;
+      background: #fffbeb !important;
+      border: 1.5px dashed #d97706 !important;
+      color: #78350f !important;
+      padding: 6px 10px !important;
+      font-size: 12px !important;
+    }
+    table.matrix-table {
+      page-break-inside: avoid;
+      break-inside: avoid;
+      border: 1px solid #cbd5e1 !important;
+      margin: 10px 0 14px !important;
+    }
+    table.matrix-table th {
+      background: #0f2b48 !important;
+      color: #ffffff !important;
+      padding: 6px 8px !important;
+      font-size: 12px !important;
+    }
+    table.matrix-table td {
+      border-bottom: 1px solid #e2e8f0 !important;
+      padding: 6px 8px !important;
+      font-size: 12px !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="docs-topbar">
+  <div class="doc-info">
+    <div class="doc-icon">M</div>
+    <div class="doc-title-box">
+      <h1>Kịch Bản Pitch Deck 7 Phút — Chuẩn Câu Từ & Nhịp Điệu Thalic Voice</h1>
+      <div class="doc-meta">
+        <span>Founder Vy Thiện Hùng</span>
+        <span>•</span>
+        <span>Tổng số từ: ~680 từ (~5:45 đọc thong thả)</span>
+        <span>•</span>
+        <span>SCQA Thalic Voice Level 3</span>
+      </div>
+    </div>
+  </div>
+  <div class="doc-actions">
+    <a href="Danh_Sach_De_Thi_In_San.html" target="_blank" class="btn-action btn-prop">
+      🖨️ Kho Đề Thi In Sẵn (Props)
+    </a>
+    <a href="Pitch_Deck_Elearning_MercyTech.html" target="_blank" class="btn-action btn-print">
+      Mở Slide Pitch Deck
+    </a>
+    <a href="Kich_Ban_Thuyet_Trinh_Pitch_Deck_7Phut_ThalicVoice.docx" download class="btn-action btn-download">
+      Tải File Word (.docx)
+    </a>
+    <button onclick="window.print()" class="btn-action btn-print">
+      In Kịch Bản (Ctrl + P)
+    </button>
+  </div>
+</header>
+
+<main class="docs-container">
+  <article class="docs-page">
+    
+    <div class="main-heading">KỊCH BẢN THUYẾT TRÌNH PITCH DECK 7 PHÚT (420 GIÂY)</div>
+    <div class="main-sub">DỰ ÁN: NỀN TẢNG LUYỆN THI CẤP TỐC (luyenthicaptoc.vn) — MERCY TECH</div>
+
+    <div class="lean-badge-banner">
+      <div>
+        <strong>ĐÃ RÀ SOÁT TỪNG CÂU TỪ (CHUẨN NHỊP THỞ & BON MỒM)</strong><br>
+        <span style="color:#047857; font-size:13px;">Độ dài ~680 từ. Đọc thong thả chỉ mất 5 phút 45 giây, chừa trọn vẹn 1 phút 15 giây cho hành động phát đề, dừng lặng 2s và tương tác slide!</span>
+      </div>
+      <div style="font-weight:900; font-size:20px; color:#059669;">~680 TỪ</div>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-item">
+        <strong>Người thuyết trình</strong>
+        <span>Founder Vy Thiện Hùng</span>
+      </div>
+      <div class="meta-item">
+        <strong>Cấu trúc chuẩn hóa</strong>
+        <span>SCQA Thalic Voice Level 3</span>
+      </div>
+      <div class="meta-item">
+        <strong>Thời lượng chuẩn</strong>
+        <span>Đúng 7 phút 00 giây</span>
+      </div>
+    </div>
+
+    <!-- PHẦN 1: BẢNG TỔNG QUAN -->
+    <h2 class="sec-title">1. BẢNG PHÂN BỔ 4 CHẶNG SCQA TINH GỌN</h2>
+    <table class="matrix-table">
+      <thead>
+        <tr><th>Chặng</th><th>Slide</th><th>Thời gian</th><th>Cốt lõi & Điểm nhấn</th><th>Thần thái & Kỹ thuật Thalic Voice</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="scqa-badge badge-s">S</span></td>
+          <td><strong>1 - 2a</strong></td>
+          <td>0:00 - 1:00 (60s)</td>
+          <td>Cú hích Bộ GD&ĐT 2027-2030 & Sĩ tử Nam 5,8 lên 8,0</td>
+          <td>Đứng kiềng 3 chân, mắt bao quát, giọng đĩnh đạc &rarr; Chuyển sang giọng tâm sự</td>
+        </tr>
+        <tr>
+          <td><span class="scqa-badge badge-c">C</span></td>
+          <td><strong>2b - 4</strong></td>
+          <td>1:00 - 2:45 (105s)</td>
+          <td>Phát đề A4, em họ dột ướt xấp đề, Dì giáo viên & Vòng lặp bế tắc</td>
+          <td>Hóm hỉnh khi phát đề &rarr; Hạ giọng lắng đọng, nghẹn ngào &rarr; Đanh thép</td>
+        </tr>
+        <tr>
+          <td><span class="scqa-badge badge-q">Q</span></td>
+          <td><strong>Chuyển</strong></td>
+          <td>2:45 - 3:05 (20s)</td>
+          <td>Câu hỏi lớn: Xóa rào cản học sinh & Lan tỏa tri thức thầy cô</td>
+          <td><strong>Dừng đúng 2 giây tĩnh lặng (Dramatic Pause)</strong>, ánh mắt nhìn sâu vào Ban giám khảo</td>
+        </tr>
+        <tr>
+          <td><span class="scqa-badge badge-a">A</span></td>
+          <td><strong>5 - 12</strong></td>
+          <td>3:05 - 7:00 (235s)</td>
+          <td>Cam kết 0đ, 3 Trụ AI, Thử nghiệm 10k User & Kêu gọi 500Tr</td>
+          <td>Bừng sáng, tự hào &rarr; Sắc bén tài chính &rarr; Truyền cảm hứng, cúi đầu</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- PHẦN 2: LỜI NÓI CHI TIẾT -->
+    <h2 class="sec-title">2. LỜI THOẠI CHI TIẾT 12 SLIDES (CHUẨN TỪNG CÂU TỪ)</h2>
+
+    <!-- [S] SITUATION -->
+    <div style="font-weight:900; color:#0284c7; font-size:14px; margin-top:20px;">[PHẦN S — SITUATION: BỐI CẢNH & THỜI THẾ] (0:00 - 1:00 | 60s)</div>
+
+    <!-- Slide 1 -->
+    <h3 class="slide-title">
+      <span>SLIDE 1: CÚ HÍCH THI MÁY TÍNH CỦA BỘ GD&ĐT</span>
+      <span class="slide-time">0:00 - 0:35 (35s | ~65 từ)</span>
+    </h3>
+    <div class="cue-row"><strong>Thần thái:</strong> Đứng thế kiềng 3 chân vững vàng, hai tay mở góc 45 độ, giọng nói đĩnh đạc, chắc nịch.</div>
+    <div class="speech-box">
+      <p><em>"Kính thưa Ban giám khảo,</em></p>
+      <p>Theo lộ trình chính thức từ Bộ Giáo dục & Đào tạo: Năm 2027 sẽ bắt đầu thí điểm, và đến năm 2030 sẽ chính thức phổ cập thi tốt nghiệp THPT trên máy tính trên toàn quốc.</p>
+      <p>Nghĩa là mỗi năm, hơn 1 triệu học sinh bắt buộc phải bước vào một sân chơi hoàn toàn mới: <strong>Thi số hóa trên máy tính, thay vì tô phiếu trắc nghiệm bằng bút chì.</strong></p>
+      <p>Đó là xu hướng tất yếu của thời đại. Nhưng hiện tại, các em đang chuẩn bị ra sao?"</p>
+    </div>
+
+    <!-- Slide 2a -->
+    <h3 class="slide-title">
+      <span>SLIDE 2 (PHẦN ĐẦU): MỤC TIÊU 5,8 LÊN 8,0 CỦA SĨ TỬ</span>
+      <span class="slide-time">0:35 - 1:00 (25s | ~45 từ)</span>
+    </h3>
+    <div class="cue-row"><strong>Thần thái:</strong> Chuyển sang giọng tâm sự, ấm áp, kết nối cảm xúc người nghe.</div>
+    <div class="speech-box">
+      <p>"Năm nào cũng vậy, cứ đến mùa thi là hơn 1 triệu sĩ tử lại bước vào cuộc đua khốc liệt. Em nào cũng có một ước mơ: Như Nam, đang ở mức 5,8 điểm Toán và khao khát chạm mốc 8,0 để bước chân vào ngôi trường đại học mơ ước.</p>
+      <p>Các em không hề lười biếng. Các em cày ngày cày đêm, chắt chiu từng hy vọng.</p>
+      <p>Thế nhưng, đằng sau sự nỗ lực đó là những nghịch lý xót xa..."</p>
+    </div>
+
+    <!-- [C] COMPLICATION -->
+    <div style="font-weight:900; color:#dc2626; font-size:14px; margin-top:24px;">[PHẦN C — COMPLICATION: BIẾN CỐ & NỖI ĐAU THẬT] (1:00 - 2:45 | 105s)</div>
+
+    <!-- Slide 2b -->
+    <h3 class="slide-title">
+      <span>SLIDE 2 (TIẾP): PHÁ BĂNG BẰNG XẤP ĐỀ IN & CÂU CHUYỆN ĐỨA EM HỌ</span>
+      <span class="slide-time">1:00 - 1:50 (50s | ~90 từ)</span>
+    </h3>
+    <div class="action-callout">
+      <strong>Đạo cụ & Hành động sân khấu:</strong> Cầm xấp đề A4 dày cộp, bước xuống gửi tặng 1-2 tờ cho BGK:  
+      <em>"Em xin gửi tặng Ban giám khảo một đề thi thử môn Toán năm 2026. Chúc các anh chị làm bài may mắn ạ! Nhưng em hỏi thật: Tuần trước anh chị có nhớ mình đã để tờ đề cũ ở đâu không, hay làm xong là nó bay đi đâu mất rồi?"</em> &rarr; <em>(Khán phòng cười ồ, anh quay lại bục trung tâm, nét mặt và giọng nói trầm lắng xuống)</em>
+    </div>
+    <div class="speech-box">
+      <p>"Nụ cười vừa rồi chính là câu chuyện có thật của đứa em họ tôi.</p>
+      <p>Gia đình em ở quê, hoàn cảnh còn nhiều khó khăn, không có tiền đi học lò. Em gom góp từng file PDF rồi chắt chiu tiền in cả một xấp đề photo dày cộp mang về cặm cụi giải suốt ngày đêm.</p>
+      <p>Thế rồi, một đêm mưa lớn, mái nhà bị dột. Nước mưa nhỏ tong tong làm ướt sũng và nhòe nhoẹt hết xấp đề em đã làm suốt mấy tháng trời.</p>
+      <p>Sáng hôm sau, em ngồi ôm xấp giấy ướt sũng mà khóc nức nở. Đề khoanh mực nát bét, muốn ôn lại không được. Đã vậy, 1-2h đêm gặp câu khó hỏi ChatGPT lúc đó thì gật gù, nhưng hôm sau gặp lại vẫn quên sạch vì không có chỗ lưu vết lỗi sai!"</p>
+    </div>
+
+    <!-- Slide 3 -->
+    <h3 class="slide-title">
+      <span>SLIDE 3: NGƯỜI DÌ GIÁO VIÊN & 3 NIỀM TIN BẤT BIẾN</span>
+      <span class="slide-time">1:50 - 2:25 (35s | ~65 từ)</span>
+    </h3>
+    <div class="cue-row"><strong>Thần thái:</strong> Chân thành, xúc động, đanh thép khi đếm 3 ngón tay dứt khoát.</div>
+    <div class="speech-box">
+      <p>"Và ở phía bên kia, Dì ruột của tôi là một giáo viên dạy giỏi ở trường huyện. Dì dạy rất tâm huyết, nhưng gia đình còn nhiều khó khăn, Dì chỉ có thể mở lớp dạy kèm cho vài ba đứa trẻ quanh xóm, không có cách nào mang tri thức của mình tiếp cận với học sinh cả nước.</p>
+      <p>Chính đứa em họ và người Dì giáo viên đã định hình nên 3 niềm tin bất biến của chúng tôi:</p>
+      <p><strong>Một: Điểm số không được phụ thuộc vào điều kiện kinh tế gia đình.</strong><br>
+      <strong>Hai: Học sinh cần biết chính xác mình sai ở đâu, hơn là cắm đầu in thêm một xấp đề mới.</strong><br>
+      <strong>Ba: Và giá trị, tri thức của những người thầy như Dì tôi xứng đáng được lan tỏa rộng rãi đến muôn nơi!</strong>"</p>
+    </div>
+
+    <!-- Slide 4 -->
+    <h3 class="slide-title">
+      <span>SLIDE 4: VÒNG LẶP BẾ TẮC CỦA THỊ TRƯỜNG</span>
+      <span class="slide-time">2:25 - 2:45 (20s | ~35 từ)</span>
+    </h3>
+    <div class="speech-box">
+      <p>"Thế nhưng ngoài thị trường hiện nay: Học sinh thì bơi trong đề lậu trôi nổi, học trước quên sau. Còn thầy cô tâm huyết thì bị các nền tảng trung gian thu phí chiết khấu tới 50 - 70%.</p>
+      <p>Học sinh loay hoay, giáo viên bị trói chân. Một vòng lặp bế tắc kéo dài năm này qua năm khác."</p>
+    </div>
+
+    <!-- [Q] QUESTION -->
+    <div style="font-weight:900; color:#ca8a04; font-size:14px; margin-top:24px;">[PHẦN Q — QUESTION: CÂU HỎI LỚN THEN CHỐT] (2:45 - 3:05 | 20s)</div>
+
+    <!-- Transition Q -->
+    <h3 class="slide-title" style="border-left-color: #eab308; background: #fefce8;">
+      <span>ĐIỂM RƠI CHUYỂN DỊCH: CÂU HỎI LỚN CỦA CUỘC ĐỜI</span>
+      <span class="slide-time" style="background: #fef08a; color: #854d0e;">2:45 - 3:05 (20s | ~40 từ)</span>
+    </h3>
+    <div class="cue-row"><strong>Kỹ thuật Thalic:</strong> <strong>Dừng đúng 2 giây tĩnh lặng hoàn toàn (Dramatic Pause)</strong>. Hạ giọng trầm ấm, hai tay mở nhẹ, ánh mắt nhìn thẳng vào Ban giám khảo.</div>
+    <div class="speech-box" style="border-left-color: #eab308; background: #fefce8; color: #713f12;">
+      <p><em>(Dừng 2 giây yên lặng)</em></p>
+      <p>"Đứng trước giọt nước mắt của đứa em họ bên xấp đề ướt sũng, và nhìn lớp học nhỏ chật vật của Dì, tôi tự đặt cho mình câu hỏi lớn:</p>
+      <p><strong>Làm sao để mọi học sinh dù ở hoàn cảnh khó khăn nào cũng có thể luyện thi trên máy tính hoàn toàn miễn phí, có một người thầy AI lưu vết từng lỗi sai?</strong></p>
+      <p><strong>Và làm sao để người thầy giáo giỏi ở bất cứ nơi đâu cũng có thể lan tỏa tri thức đến hàng vạn học sinh trên khắp cả nước?</strong>"</p>
+    </div>
+
+    <!-- [A] ANSWER -->
+    <div style="font-weight:900; color:#16a34a; font-size:14px; margin-top:24px;">[PHẦN A — ANSWER: LỜI GIẢI, VŨ KHÍ & THỰC CHỨNG] (3:05 - 7:00 | 235s)</div>
+
+    <!-- Slide 5 -->
+    <h3 class="slide-title">
+      <span>SLIDE 5: LỜI GIẢI 1 — TUYÊN NGÔN CAM KẾT 0 ĐỒNG</span>
+      <span class="slide-time">3:05 - 3:35 (30s | ~50 từ)</span>
+    </h3>
+    <div class="cue-row"><strong>Thần thái:</strong> Bừng sáng, dõng dạc, bước lên 1 bước, hai tay mở rộng.</div>
+    <div class="speech-box">
+      <p>"Câu trả lời của chúng tôi chính là <strong>luyenthicaptoc.vn</strong>.</p>
+      <p>Và lời giải đầu tiên bắt đầu bằng một cam kết sắt đá:</p>
+      <p><strong>CHÚNG TÔI KHÔNG THU TIỀN LÀM ĐỀ! TOÀN BỘ ĐỀ THI LÀ 100% MIỄN PHÍ.</strong></p>
+      <p>Không còn tốn tiền in đề giấy, không lo nhà dột ướt mất bài thi. Chỉ cần một chiếc điện thoại cũ hay máy tính có mạng, mọi học sinh đều có quyền tiếp cận ngân hàng đề chuẩn hóa của Bộ GD&ĐT hoàn toàn bình đẳng!"</p>
+    </div>
+
+    <!-- Slide 6, 7, 8 -->
+    <h3 class="slide-title">
+      <span>SLIDE 6, 7, 8: LỜI GIẢI 2 — BỘ 3 TRỤ CỘT AI LƯU VẾT & TRỰC QUAN 3D</span>
+      <span class="slide-time">3:35 - 4:40 (65s | ~110 từ)</span>
+    </h3>
+    <div class="cue-row"><strong>Thần thái:</strong> Tự tin công nghệ, chỉ tay vào màn hình slide.</div>
+    <div class="speech-box">
+      <p>"Miễn phí đề thi, nhưng làm sao để học sinh tiến bộ vượt bậc?</p>
+      <p>Chúng tôi trao cho các em <strong>Bộ 3 Trụ Cột AI</strong>:</p>
+      <p>Thứ nhất: <strong>Radar AI chẩn đoán</strong> — chỉ sau 5 câu mini test, hệ thống bóc tách chính xác lỗ hổng kiến thức.</p>
+      <p>Thứ hai: <strong>Sổ lỗi sai thông minh</strong> — tự động lưu vết từng câu sai, bắt học sinh làm lại đúng câu đó cho đến khi thuần thục bản chất mới thôi.</p>
+      <p>Và thứ ba: <em>(chỉ tay sang widget 3D)</em> <strong>Gia sư AI Cụt 3D</strong>. Không chỉ trả lời bằng chữ, Cụt dựng ngay mô hình 3D tương tác: Mặt yên ngựa, hình nón cắt thiết diện uốn lượn... Học sinh rê chuột xoay 360 độ là thấu suốt không gian, xóa sạch nỗi sợ hình học để tự tin chinh phục điểm 8+ 9+!"</p>
+    </div>
+
+    <!-- Slide 9 -->
+    <h3 class="slide-title">
+      <span>SLIDE 9: LỜI GIẢI 3 — TRAO QUYỀN CHO THẦY CÔ NHƯ DÌ TÔI (80/20)</span>
+      <span class="slide-time">4:40 - 5:10 (30s | ~50 từ)</span>
+    </h3>
+    <div class="cue-row"><strong>Thần thái:</strong> Trang trọng, ấm áp, tay đặt lên ngực trái.</div>
+    <div class="speech-box">
+      <p>"Và để giải bài toán cho những người thầy như Dì tôi:</p>
+      <p>Tại luyenthicaptoc.vn, <strong>GIÁO VIÊN NHẬN ĐẾN 80% DOANH THU — CHÚNG TÔI CHỈ THU 20% PHÍ HẠ TẦNG VÀ AI.</strong></p>
+      <p>Chúng tôi trao cho thầy cô công cụ mở lớp, livestream và thuật toán bảo vệ bản quyền. Người thầy ở bất kỳ vùng quê nào cũng có thể lan tỏa tri thức đến học sinh cả nước và nhận lại sự tôn vinh xứng đáng!"</p>
+    </div>
+
+    <!-- Slide 10 -->
+    <h3 class="slide-title">
+      <span>SLIDE 10: LỜI GIẢI 4 — DÒNG TIỀN FREEMIUM & MICRO-FEE LÀNH MẠNH</span>
+      <span class="slide-time">5:10 - 5:40 (30s | ~50 từ)</span>
+    </h3>
+    <div class="cue-row"><strong>Thần thái:</strong> Tỉnh táo, sắc bén tài chính.</div>
+    <div class="speech-box">
+      <p>"Dòng tiền của chúng tôi đến từ đâu?</p>
+      <p>Đề thi 0 đồng là phễu hút học sinh khổng lồ. Khi cần kèm cặp chuyên sâu, các em đăng ký khóa học bổ trợ của thầy cô với mức phí cực kỳ nhẹ nhàng: <strong>Chỉ từ 199.000đ một khóa</strong>.</p>
+      <p>Thầy cô nhận ngay 159.000đ, nền tảng thu 40.000đ. Với 1 triệu sĩ tử mỗi năm, chỉ cần 5% chuyển đổi, chúng tôi đã có một dòng tiền sinh lời vô cùng vững chắc."</p>
+    </div>
+
+    <!-- Slide 11 -->
+    <h3 class="slide-title">
+      <span>SLIDE 11: LỜI GIẢI 5 — GIAI ĐOẠN THỬ NGHIỆM ĐƯỢC ĐÓN NHẬN VƯỢT MONG ĐỢI</span>
+      <span class="slide-time">5:40 - 6:20 (40s | ~65 từ)</span>
+    </h3>
+    <div class="cue-row"><strong>Thần thái:</strong> Hãnh diện, dõng dạc, hai tay mở rộng chỉ số liệu.</div>
+    <div class="speech-box">
+      <p>"Và thưa các anh chị, đây không còn là ý tưởng trên giấy!</p>
+      <p>Nền tảng đang trong <strong>giai đoạn thử nghiệm thị trường và được đón nhận vượt ngoài mong đợi</strong> của chính đội ngũ:</p>
+      <p>1. <strong>Hơn 10.000 học sinh lớp 12</strong> trên cả nước đang luyện đề và chữa lỗi sai mỗi ngày.<br>
+      2. <strong>Mạng lưới hơn 100 thầy cô giáo giỏi toàn quốc</strong> đồng hành mở lớp và kiểm định ngân hàng 12.000 câu hỏi.<br>
+      3. <strong>Kết nối khảo sát cùng 6 Trường Đại học lớn hàng đầu:</strong> ĐHQG Hà Nội, ĐHQG TP.HCM, Bách Khoa, NEU, Sư Phạm và UEH về dữ liệu thi ĐGNL và hướng nghiệp tuyển sinh số!</p>
+      <p>Thực tế đã chứng minh nhu cầu của thị trường là cực kỳ lớn!"</p>
+    </div>
+
+    <!-- Slide 12 -->
+    <h3 class="slide-title">
+      <span>SLIDE 12: LỜI KÊU GỌI ĐỒNG HÀNH — FOUNDER VY THIỆN HÙNG (500 TRIỆU / 10%)</span>
+      <span class="slide-time">6:20 - 7:00 (40s | ~70 từ)</span>
+    </h3>
+    <div class="cue-row"><strong>Thần thái:</strong> Truyền cảm hứng, sâu lắng, nhìn thẳng vào mắt Ban giám khảo, cúi đầu trang trọng.</div>
+    <div class="speech-box">
+      <p>"Kính thưa Ban giám khảo và các nhà đầu tư,</p>
+      <p>Để đón đầu kỳ thi số hóa 2027 của Bộ GD&ĐT, hôm nay tôi chính thức kêu gọi khoản đầu tư <strong>500 triệu đồng cho 10% cổ phần</strong> công ty.</p>
+      <p>500 triệu này dùng để nâng cấp hạ tầng AI Cụt 3D và mở rộng tiếp cận 50.000 học sinh.</p>
+      <p>Hơn cả một thương vụ tài chính, tôi muốn mời các anh chị cùng tôi viết tiếp một câu chuyện tử tế:</p>
+      <p><strong>Để không còn bất kỳ đứa em nào phải ôm xấp đề ướt nhòe vì nhà dột trong đêm mưa, và để mọi người thầy tâm huyết như Dì tôi đều có thể tỏa sáng đưa tri thức đến muôn nơi!</strong></p>
+      <p>Tôi là Vy Thiện Hùng, Founder của luyenthicaptoc.vn.<br>
+      Xin trân trọng cảm ơn!"</p>
+    </div>
+
+  </article>
+</main>
+
+</body>
+</html>

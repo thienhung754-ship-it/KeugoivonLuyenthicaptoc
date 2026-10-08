@@ -356,6 +356,99 @@ body:hover #fs{opacity:1}
 .slider-row input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#38bdf8;border:3px solid #fff;box-shadow:0 0 10px rgba(56,189,248,.8);cursor:pointer}
 .slider-row .val-num{width:70px;text-align:right;font-size:19px;font-weight:900;color:#38bdf8}
 
+#doc-btn{position:fixed;right:76px;top:16px;z-index:50;height:44px;padding:0 16px;display:flex;align-items:center;gap:6px;border-radius:14px;background:rgba(7,26,51,.75);color:#fff;font-size:14px;font-weight:800;text-decoration:none;cursor:pointer;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.16);opacity:0;transition:opacity .3s}
+body:hover #doc-btn{opacity:1}
+
+/* ---------- Print Stylesheet for Pitch Deck ---------- */
+@page {
+  size: landscape;
+  margin: 8mm;
+}
+@media print {
+  *, *:before, *:after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+  html, body {
+    background: #ffffff !important;
+    color: #0b192c !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+  #viewport {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  #stage {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    transform: none !important;
+  }
+  #stars, #progress, #dots, #counter, #hint, #timer, #fs, #doc-btn, #notes, #hud-brand {
+    display: none !important;
+  }
+  .slide {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    min-height: 680px !important;
+    max-height: none !important;
+    height: auto !important;
+    opacity: 1 !important;
+    display: block !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    overflow: visible !important;
+    margin-bottom: 24px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 0 0 1px #cbd5e1 !important;
+  }
+  .slide.dark {
+    background: #071220 !important;
+    color: #ffffff !important;
+  }
+  .r {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  .step {
+    opacity: 1 !important;
+    transform: none !important;
+    display: block !important;
+  }
+  .s7-item.step {
+    display: flex !important;
+    opacity: 1 !important;
+  }
+  .s7-item.on {
+    border-color: #ffd43b !important;
+  }
+  .spot {
+    display: none !important;
+  }
+  .s8-chat .msg.step {
+    display: flex !important;
+    opacity: 1 !important;
+  }
+  .example.step {
+    display: flex !important;
+    opacity: 1 !important;
+  }
+  .rcard.step {
+    display: flex !important;
+    opacity: 1 !important;
+  }
+  .s2-close.step {
+    display: block !important;
+    opacity: 1 !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -767,6 +860,7 @@ body:hover #fs{opacity:1}
 <div id="hint">← → hoặc Space để chuyển · F toàn màn hình · N ghi chú · T đồng hồ 7 phút</div>
 <div id="timer"><b>7:00</b><span id="tlabel">T ẩn · R đặt lại</span></div>
 <div id="notes"></div>
+<a id="doc-btn" href="Kich_Ban_Thuyet_Trinh_Pitch_Deck_7Phut_ThalicVoice_Docs.html" target="_blank" title="Xem & In Kịch Bản Thuyết Trình (Docs)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>In Kịch Bản</a>
 <button id="fs" title="Toàn màn hình (F)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:auto"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></button>
 
 <script>
