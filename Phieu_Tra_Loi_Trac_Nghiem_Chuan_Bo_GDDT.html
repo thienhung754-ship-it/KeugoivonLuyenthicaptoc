@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phiếu Trả Lời Trắc Nghiệm Chuẩn Bộ GD&ĐT 2026 — In Khổ A4</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 10mm 12mm;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #eef2f6;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #111;
+    font-size: 11pt;
+  }
+  .no-print-bar {
+    position: sticky;
+    top: 0;
+    background: #0f2b48;
+    color: #fff;
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 999;
+  }
+  .btn-print {
+    background: #22c55e;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .paper-wrap {
+    max-width: 800px;
+    margin: 20px auto 40px;
+    background: #fff;
+    padding: 24px 30px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    border: 2px solid #000;
+  }
+  .phieu-title {
+    text-align: center;
+    font-size: 16pt;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #b91c1c;
+    margin: 4px 0 2px;
+  }
+  .phieu-sub {
+    text-align: center;
+    font-size: 11pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  
+  .header-grid {
+    display: grid;
+    grid-template-columns: 1fr 140px 110px;
+    gap: 12px;
+    border: 1.5px solid #000;
+    padding: 10px;
+    margin-bottom: 14px;
+  }
+  .f-row {
+    margin-bottom: 6px;
+    font-size: 11pt;
+  }
+  .f-row span {
+    border-bottom: 1px dotted #000;
+    display: inline-block;
+    min-width: 140px;
+  }
+  
+  .num-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    border: 1px solid #777;
+    margin-top: 4px;
+  }
+  .num-cell {
+    border: 1px solid #ccc;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9pt;
+  }
+  .bubble {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 1.2px solid #000;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8pt;
+    font-weight: bold;
+    margin: 0 2px;
+  }
+
+  .part-box {
+    border: 1.5px solid #000;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+  }
+  .part-head {
+    font-weight: 900;
+    font-size: 11pt;
+    text-transform: uppercase;
+    background: #f1f5f9;
+    padding: 3px 6px;
+    margin-bottom: 8px;
+    border-left: 4px solid #b91c1c;
+  }
+
+  /* Grid 12 câu */
+  .grid-12 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px 14px;
+  }
+  .ans-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 10pt;
+    padding: 2px 0;
+  }
+  .ans-num { font-weight: bold; width: 24px; }
+
+  /* Phần 2 Đúng sai */
+  .grid-tf {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  .tf-card {
+    border: 1px solid #aaa;
+    padding: 4px 6px;
+    border-radius: 4px;
+  }
+  .tf-card-title { font-weight: bold; font-size: 10pt; margin-bottom: 4px; border-bottom: 1px solid #eee; text-align: center; }
+  .tf-row { display: flex; justify-content: space-between; align-items: center; font-size: 9.5pt; margin-bottom: 2px; }
+
+  /* Phần 3 Trả lời ngắn */
+  .grid-sa {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+  }
+  .sa-col {
+    border: 1px solid #aaa;
+    padding: 4px;
+    text-align: center;
+  }
+  .sa-num { font-weight: bold; font-size: 10pt; margin-bottom: 4px; }
+  .sa-input {
+    border: 1px solid #000;
+    height: 24px;
+    margin-bottom: 4px;
+    font-weight: bold;
+    font-size: 11pt;
+  }
+
+  @media print {
+    body { background: #fff; }
+    .no-print-bar { display: none !important; }
+    .paper-wrap { margin: 0; box-shadow: none; border: 2px solid #000; }
+  }
+</style>
+</head>
+<body>
+
+<div class="no-print-bar">
+  <div style="font-weight:bold;">PHIẾU TRẢ LỜI TRẮC NGHIỆM CHUẨN BỘ GD&ĐT 2026 (KHỔ A4)</div>
+  <div style="display:flex; gap:10px;">
+    <a href="De_Thi_Thu_Toan_2026_MaDe101_Chuan_Bo_GDDT.html" style="color:#fff; font-size:13px; text-decoration:none; padding:6px 12px; background:rgba(255,255,255,0.15); border-radius:4px;">&larr; Xem Đề Toán</a>
+    <button onclick="window.print()" class="btn-print">In Phiếu Này (Ctrl + P)</button>
+  </div>
+</div>
+
+<div class="paper-wrap">
+  <div style="display:flex; justify-content:space-between; font-size:10pt; font-weight:bold; margin-bottom:4px;">
+    <div>BỘ GIÁO DỤC VÀ ĐÀO TẠO</div>
+    <div>luyenthicaptoc.vn</div>
+  </div>
+  <div class="phieu-title">PHIẾU TRẢ LỜI TRẮC NGHIỆM</div>
+  <div class="phieu-sub">KỲ THI TỐT NGHIỆP TRUNG HỌC PHỔ THÔNG NĂM 2026</div>
+
+  <div class="header-grid">
+    <div>
+      <div class="f-row">1. Tỉnh/Thành phố: <span></span></div>
+      <div class="f-row">2. Điểm thi / Trường: <span></span></div>
+      <div class="f-row">3. Họ và tên thí sinh: <span></span></div>
+      <div class="f-row">4. Ngày sinh: <span>/ /</span> Giới tính: <span></span></div>
+      <div class="f-row">5. Phòng thi số: <span></span> Môn thi: <strong>TOÁN HỌC</strong></div>
+    </div>
+    <!-- SBD -->
+    <div>
+      <div style="font-weight:bold; font-size:9pt; text-align:center;">SỐ BÁO DANH</div>
+      <div class="num-grid" style="grid-template-columns:repeat(6,1fr);">
+        <div class="num-cell"></div><div class="num-cell"></div><div class="num-cell"></div><div class="num-cell"></div><div class="num-cell"></div><div class="num-cell"></div>
+      </div>
+      <div style="font-size:7.5pt; text-align:center; color:#555; margin-top:2px;">(Tô tròn các chữ số SBD bên dưới)</div>
+    </div>
+    <!-- Mã đề -->
+    <div>
+      <div style="font-weight:bold; font-size:9pt; text-align:center;">MÃ ĐỀ THI</div>
+      <div class="num-grid" style="grid-template-columns:repeat(3,1fr);">
+        <div class="num-cell" style="font-weight:bold;">1</div><div class="num-cell" style="font-weight:bold;">0</div><div class="num-cell" style="font-weight:bold;">1</div>
+      </div>
+      <div style="font-size:7.5pt; text-align:center; color:#555; margin-top:2px;">(Mã: 101)</div>
+    </div>
+  </div>
+
+  <!-- PHẦN I -->
+  <div class="part-box">
+    <div class="part-head">PHẦN I: Thí sinh chọn 1 phương án (A, B, C, D) — Dùng bút chì 2B tô kín ô tròn</div>
+    <div class="grid-12">
+      <div class="ans-row"><span class="ans-num">1</span><div><span class="bubble">A</span><span class="bubble">B</span><span class="bubble">C</span><span class="bubble">D</span></div></div>
+      <div class="ans-row"><span class="ans-num">4</span><div><span class="bubble">A</span><span class="bubble">B</span><span class="bubble">C</span><span class="bubble">D</span></div></div>
+      <div class="ans-row"><span class="ans-num">7</span><div><span class="bubble">A</span><span class="bubble">B</span><span class="bubble">C</span><span class="bubble">D</span></div></div>
+      <div class="ans-row"><span class="ans-num">10</span><div><span class="bubble">A</span><span class="bubble">B</span><span class="bubble">C</span><span class="bubble">D</span></div></div>
+
+      <div class="ans-row"><span class="ans-num">2</span><div><span class="bubble">A</span><span class="bubble">B</span><span class="bubble">C</span><span class="bubble">D</span></div></div>
+      <div class="ans-row"><span class="ans-num">5</span><div><span class="bubble">A</span><span class="bubble">B</span><span class="bubble">C</span><span class="bubble">D</span></div></div>
+      <div class="ans-row"><span class="ans-num">8</span><div><span class="bubble">A</span><span class="bubble">B</span><span class="bubble">C</span><span class="bubble">D</span></div></div>
+      <div class="ans-row"><span class="ans-num">11</span><div><span class="bubble">A</span><span class="bubble">B</span><span class="bubble">C</span><span class="bubble">D</span></div></div>
+
+      <div class="ans-row"><span class="ans-num">3</span><div><span class="bubble">A</span><span class="bubble">B</span><span class="bubble">C</span><span class="bubble">D</span></div></div>
+      <div class="ans-row"><span class="ans-num">6</span><div><span class="bubble">A</span><span class="bubble">B</span><span class="bubble">C</span><span class="bubble">D</span></div></div>
+      <div class="ans-row"><span class="ans-num">9</span><div><span class="bubble">A</span><span class="bubble">B</span><span class="bubble">C</span><span class="bubble">D</span></div></div>
+      <div class="ans-row"><span class="ans-num">12</span><div><span class="bubble">A</span><span class="bubble">B</span><span class="bubble">C</span><span class="bubble">D</span></div></div>
+    </div>
+  </div>
+
+  <!-- PHẦN II -->
+  <div class="part-box">
+    <div class="part-head">PHẦN II: Trắc nghiệm Đúng/Sai — Thí sinh chọn ô Đ (Đúng) hoặc S (Sai)</div>
+    <div class="grid-tf">
+      <div class="tf-card">
+        <div class="tf-card-title">CÂU 1</div>
+        <div class="tf-row"><span>a)</span><div><span class="bubble">Đ</span><span class="bubble">S</span></div></div>
+        <div class="tf-row"><span>b)</span><div><span class="bubble">Đ</span><span class="bubble">S</span></div></div>
+        <div class="tf-row"><span>c)</span><div><span class="bubble">Đ</span><span class="bubble">S</span></div></div>
+        <div class="tf-row"><span>d)</span><div><span class="bubble">Đ</span><span class="bubble">S</span></div></div>
+      </div>
+      <div class="tf-card">
+        <div class="tf-card-title">CÂU 2</div>
+        <div class="tf-row"><span>a)</span><div><span class="bubble">Đ</span><span class="bubble">S</span></div></div>
+        <div class="tf-row"><span>b)</span><div><span class="bubble">Đ</span><span class="bubble">S</span></div></div>
+        <div class="tf-row"><span>c)</span><div><span class="bubble">Đ</span><span class="bubble">S</span></div></div>
+        <div class="tf-row"><span>d)</span><div><span class="bubble">Đ</span><span class="bubble">S</span></div></div>
+      </div>
+      <div class="tf-card">
+        <div class="tf-card-title">CÂU 3</div>
+        <div class="tf-row"><span>a)</span><div><span class="bubble">Đ</span><span class="bubble">S</span></div></div>
+        <div class="tf-row"><span>b)</span><div><span class="bubble">Đ</span><span class="bubble">S</span></div></div>
+        <div class="tf-row"><span>c)</span><div><span class="bubble">Đ</span><span class="bubble">S</span></div></div>
+        <div class="tf-row"><span>d)</span><div><span class="bubble">Đ</span><span class="bubble">S</span></div></div>
+      </div>
+      <div class="tf-card">
+        <div class="tf-card-title">CÂU 4</div>
+        <div class="tf-row"><span>a)</span><div><span class="bubble">Đ</span><span class="bubble">S</span></div></div>
+        <div class="tf-row"><span>b)</span><div><span class="bubble">Đ</span><span class="bubble">S</span></div></div>
+        <div class="tf-row"><span>c)</span><div><span class="bubble">Đ</span><span class="bubble">S</span></div></div>
+        <div class="tf-row"><span>d)</span><div><span class="bubble">Đ</span><span class="bubble">S</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHẦN III -->
+  <div class="part-box">
+    <div class="part-head">PHẦN III: Trắc nghiệm Trả lời ngắn — Viết kết quả số vào ô</div>
+    <div class="grid-sa">
+      <div class="sa-col"><div class="sa-num">Câu 1</div><div class="sa-input"></div></div>
+      <div class="sa-col"><div class="sa-num">Câu 2</div><div class="sa-input"></div></div>
+      <div class="sa-col"><div class="sa-num">Câu 3</div><div class="sa-input"></div></div>
+      <div class="sa-col"><div class="sa-num">Câu 4</div><div class="sa-input"></div></div>
+      <div class="sa-col"><div class="sa-num">Câu 5</div><div class="sa-input"></div></div>
+      <div class="sa-col"><div class="sa-num">Câu 6</div><div class="sa-input"></div></div>
+    </div>
+  </div>
+
+  <div style="display:flex; justify-content:space-between; margin-top:14px; font-size:10pt;">
+    <div style="text-align:center; width:200px;">
+      <strong>GIÁM THỊ 1</strong><br>
+      <small>(Ký và ghi rõ họ tên)</small>
+    </div>
+    <div style="text-align:center; width:200px;">
+      <strong>GIÁM THỊ 2</strong><br>
+      <small>(Ký và ghi rõ họ tên)</small>
+    </div>
+    <div style="text-align:center; width:200px;">
+      <strong>THÍ SINH</strong><br>
+      <small>(Ký và ghi rõ họ tên)</small>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

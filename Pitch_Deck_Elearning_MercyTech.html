@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>luyenthicaptoc.vn — Luyện Thi Cấp Tốc | Pitch Deck Gọi Vốn Giai Đoạn 1 (500 Triệu / 10%)</title>
+<meta name="description" content="Bài thuyết trình gọi vốn giai đoạn 1 của luyenthicaptoc.vn — Nền tảng luyện thi thích ứng AI: 500 triệu cho 10% cổ phần — sứ mệnh, AI chẩn đoán, gia sư AI Cụt trực quan hóa Toán & Hình học 3D, mô hình doanh thu và kế hoạch sử dụng vốn." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --primary:#1cb0f6; --primary-d:#1697d5; --green:#58cc02; --green-d:#46a302;
+  --orange:#ff9600; --red:#ff4b4b; --purple:#a560e8; --gold:#ffd43b;
+  --ink:#1f3147; --text:#4b5d73; --muted:#7a8ba0; --line:#d9ebfb; --soft:#f4fbff;
+  --navy:#071a33;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden;background:#071a33;font-family:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3,p{margin:0}
+img{display:block}
+#viewport{position:fixed;inset:0;overflow:hidden}
+#stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:center center}
+
+/* ---------- Slide base ---------- */
+.slide{position:absolute;inset:0;display:none;overflow:hidden;padding:84px 110px;color:var(--ink);
+  background:
+    radial-gradient(900px 520px at 100% 0%,rgba(28,176,246,.16),transparent 60%),
+    radial-gradient(800px 520px at 0% 100%,rgba(88,204,2,.12),transparent 60%),
+    linear-gradient(180deg,#fcfeff,#eef8ff)}
+.slide.active{display:block}
+.slide.dark{color:#fff;
+  background:
+    radial-gradient(1100px 700px at 78% 72%,rgba(28,176,246,.34),transparent 62%),
+    radial-gradient(900px 600px at 8% 8%,rgba(88,204,2,.16),transparent 60%),
+    linear-gradient(160deg,#061629,#0c2a52 58%,#0a2448)}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;padding:10px 24px;border-radius:999px;background:#e3f5ff;color:var(--primary-d);font-size:22px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
+.dark .eyebrow{background:rgba(255,255,255,.12);color:#9fdcff}
+.h2{font-size:64px;line-height:1.1;font-weight:900;letter-spacing:-.02em;margin-top:22px;max-width:1500px}
+.h2 .b{color:var(--primary)} .h2 .g{color:var(--green-d)}
+.lead{font-size:30px;line-height:1.55;font-weight:700;color:var(--text)}
+.dark .lead{color:rgba(255,255,255,.82)}
+.grad{background:linear-gradient(90deg,#36c6ff,#7be23a);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* reveal animations (auto on slide enter) */
+.slide .r{opacity:0}
+.slide.active .r{animation:rise .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d,0s)}
+.slide.active .r-pop{animation-name:pop}
+.slide.active .r-left{animation-name:riseLeft}
+.slide.active .r-right{animation-name:riseRight}
+.slide.active .r-fade{animation-name:fade}
+@keyframes rise{from{opacity:0;transform:translateY(46px)}to{opacity:1;transform:none}}
+@keyframes riseLeft{from{opacity:0;transform:translateX(-70px)}to{opacity:1;transform:none}}
+@keyframes riseRight{from{opacity:0;transform:translateX(90px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+@keyframes twinkle{0%,100%{opacity:.15}50%{opacity:1}}
+@keyframes pulseGlow{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.08);opacity:1}}
+@keyframes ringOut{0%{box-shadow:0 0 0 0 rgba(255,212,59,.75)}100%{box-shadow:0 0 0 34px rgba(255,212,59,0)}}
+@keyframes blink{0%,60%,100%{opacity:.25}30%{opacity:1}}
+@keyframes draw{from{stroke-dashoffset:1822}to{stroke-dashoffset:0}}
+@keyframes coin{0%{offset-distance:0%;opacity:0;transform:scale(.6)}12%{opacity:1;transform:scale(1)}88%{opacity:1}100%{offset-distance:100%;opacity:0;transform:scale(.7)}}
+@keyframes tick{from{transform:scale(0) rotate(-40deg)}to{transform:none}}
+
+/* fragment steps (controlled by next) */
+.step{opacity:0;transform:translateY(34px) scale(.98);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.step.show{opacity:1;transform:none;pointer-events:auto}
+
+.cut{position:absolute;pointer-events:none;filter:drop-shadow(0 26px 40px rgba(0,30,70,.28))}
+.demo-tag{position:absolute;right:110px;top:70px;padding:10px 22px;border-radius:999px;background:#fff4d6;border:2px solid #ffd27a;color:#b36b00;font-size:20px;font-weight:900;letter-spacing:.04em}
+
+/* browser frame with screenshot */
+.frame{position:absolute;background:#fff;border-radius:26px;overflow:hidden;box-shadow:0 44px 100px rgba(11,60,110,.30),0 0 0 1px rgba(28,176,246,.2);transform:rotate(-1.2deg)}
+.slide.active .frame.r{animation-name:frameIn}
+@keyframes frameIn{from{opacity:0;transform:translateX(140px) rotate(5deg) scale(.94)}to{opacity:1;transform:rotate(-1.2deg)}}
+.frame .bar{height:46px;background:linear-gradient(#f4f9fe,#e6f0f9);display:flex;align-items:center;gap:10px;padding:0 20px}
+.frame .bar i{width:14px;height:14px;border-radius:50%;background:#ff6b6b}
+.frame .bar i:nth-child(2){background:#ffd43b}.frame .bar i:nth-child(3){background:#51cf66}
+.frame .bar span{margin-left:14px;background:#fff;border-radius:999px;padding:5px 22px;font-size:17px;color:var(--muted);font-weight:700}
+.vp{position:relative;overflow:hidden;background:#eef3f8}
+.vp img{display:block;width:100%}
+.spot{position:absolute;left:0;top:0;width:0;height:0;border:4px solid var(--gold);border-radius:16px;opacity:0;pointer-events:none;
+  transition:all .7s cubic-bezier(.2,.8,.2,1);box-shadow:0 0 0 3000px rgba(7,26,51,.58),0 0 36px rgba(255,212,59,.95)}
+.spot.on{opacity:1}
+.spot.soft{box-shadow:none;animation:ringOut 2s infinite}
+
+/* ---------- Slide 1 ---------- */
+#stars{position:absolute;inset:0;pointer-events:none}
+#stars i{position:absolute;width:4px;height:4px;border-radius:50%;background:#fff;animation:twinkle 3s infinite}
+.s1-wrap{position:absolute;left:110px;top:0;bottom:0;width:980px;display:flex;flex-direction:column;justify-content:center;z-index:2}
+.s1-h{font-size:82px;line-height:1.12;font-weight:900;letter-spacing:-.025em;margin-top:28px}
+.s1-h span{display:block}
+.s1-sub{font-size:32px;font-weight:700;margin-top:36px;max-width:880px;line-height:1.45}
+.s1-foot{margin-top:48px;display:inline-flex;align-items:center;gap:14px;padding:12px 28px;border-radius:999px;background:rgba(255,255,255,.12);font-size:22px;font-weight:800;color:#bfe9ff;align-self:flex-start;border:1px solid rgba(255,255,255,.18)}
+.glow{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(28,176,246,.55),transparent 65%);animation:pulseGlow 4s ease-in-out infinite}
+
+/* Slide 1 Macro Catalyst Card (Bối cảnh Bộ GD&ĐT) */
+.s1-macro{
+  position:absolute;right:90px;top:110px;width:710px;
+  background:rgba(10,23,46,.82);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border:2px solid rgba(56,189,248,.35);
+  border-radius:30px;
+  padding:26px 30px;
+  box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 50px rgba(28,176,246,.18);
+  z-index:10;
+}
+.macro-badge-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.macro-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:999px;background:rgba(245,158,11,.10);border:1px solid rgba(245,158,11,.45);color:#fbbf24;font-size:15px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.macro-tag .m-dot{width:7px;height:7px;border-radius:50%;background:#f59e0b;box-shadow:0 0 8px #f59e0b;flex:none}
+.macro-policy{font-size:15px;font-weight:800;color:#94a3b8}
+.macro-title{font-size:26px;font-weight:900;color:#fff;line-height:1.25;margin-bottom:18px}
+.macro-timeline{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:16px 20px}
+.m-step{flex:1;display:flex;flex-direction:column;gap:4px}
+.m-step .m-year{display:inline-block;padding:4px 12px;border-radius:10px;background:#0284c7;color:#fff;font-size:19px;font-weight:900;width:max-content;box-shadow:0 4px 12px rgba(2,132,199,.4)}
+.m-step.highlight .m-year{background:#16a34a;box-shadow:0 4px 12px rgba(22,163,74,.4)}
+.m-step strong{font-size:18px;font-weight:900;color:#fff;margin-top:4px;display:block}
+.m-step span{font-size:14px;font-weight:700;color:#cbd5e1;line-height:1.3}
+.m-arrow{display:flex;align-items:center;justify-content:center;color:#38bdf8}
+.macro-fact{margin-top:16px;display:flex;align-items:flex-start;gap:14px;background:rgba(56,189,248,.1);border:1px dashed rgba(56,189,248,.35);border-radius:18px;padding:12px 18px;font-size:16px;line-height:1.45;color:#e2e8f0;font-weight:700}
+.macro-fact strong{color:#38bdf8}
+.pulse-point{width:10px;height:10px;border-radius:50%;background:#4ade80;box-shadow:0 0 12px #4ade80;margin-top:6px;flex:none;animation:blink 1.2s infinite}
+
+/* ---------- Slide 2 ---------- */
+.s2-grid{position:absolute;left:110px;top:290px;width:1130px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.scard{background:#fff;border:2px solid var(--line);border-radius:28px;padding:22px 28px;box-shadow:0 18px 40px rgba(28,176,246,.10);min-height:200px}
+.scard .tag{font-size:18px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--primary-d)}
+.scard h3{font-size:32px;line-height:1.15;font-weight:900;margin-top:8px}
+.scard p{font-size:24px;line-height:1.4;font-weight:700;color:var(--text);margin-top:8px}
+.scard.warn .tag{color:#d97706}.scard.warn{border-color:#ffd9a0;background:linear-gradient(180deg,#fffaf0,#fff)}
+.scard.teach{grid-column:span 2;border-color:#bfe9a0;background:linear-gradient(180deg,#f4fcea,#fff)}
+.scard.teach .tag{color:var(--green-d)}
+.s2-grid.dim .scard{opacity:.38;transition:opacity .8s}
+.s2-close{position:absolute;left:110px;top:830px;width:1160px;font-size:54px;line-height:1.15;font-weight:900;letter-spacing:-.01em}
+.bubble{position:absolute;right:130px;top:320px;width:520px;background:#fff;border:3px solid var(--line);border-radius:34px;padding:24px 32px;font-size:32px;font-weight:800;line-height:1.35;color:var(--ink);box-shadow:0 20px 50px rgba(28,176,246,.18);transition:opacity .4s}
+.bubble:after{content:"";position:absolute;left:150px;bottom:-26px;width:40px;height:40px;background:#fff;border-right:3px solid var(--line);border-bottom:3px solid var(--line);transform:rotate(45deg)}
+
+/* ---------- Slide 3 ---------- */
+.s3-rows{position:absolute;left:110px;top:330px;width:1180px}
+.belief{display:flex;align-items:center;gap:36px;margin-bottom:34px}
+.belief .n{flex:none;width:130px;height:130px;border-radius:40px;display:flex;align-items:center;justify-content:center;font-size:76px;font-weight:900;color:#fff;box-shadow:0 12px 0 rgba(0,0,0,.12)}
+.belief:nth-child(1) .n{background:var(--primary)}.belief:nth-child(2) .n{background:var(--green)}.belief:nth-child(3) .n{background:var(--orange)}
+.belief p{font-size:46px;line-height:1.2;font-weight:900;letter-spacing:-.01em}
+
+/* ---------- Slide 4 ---------- */
+.s4-list{position:absolute;left:110px;top:400px;width:860px}
+.s4-item{display:flex;gap:22px;align-items:flex-start;margin-bottom:26px}
+.s4-item b{flex:none;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;font-weight:900}
+.s4-item div{font-size:28px;line-height:1.35;font-weight:700;color:var(--text)}
+.s4-item div strong{display:block;font-size:32px;color:var(--ink);font-weight:900}
+#loop{position:absolute;left:1020px;top:190px;width:760px;height:760px}
+#loop svg{position:absolute;inset:0}
+#loop .center{position:absolute;left:230px;top:230px;width:300px;height:300px}
+.node{position:absolute;width:176px;height:176px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;font-weight:900;font-size:22px;line-height:1.15;padding:0 8px;box-shadow:0 18px 40px rgba(0,60,120,.25),0 8px 0 rgba(0,0,0,.14)}
+.node small{font-size:20px;opacity:.9;font-weight:800;margin-bottom:6px}
+
+/* ---------- Slide 5 ---------- */
+.zero{font-size:300px;line-height:1;font-weight:900;letter-spacing:-.03em;margin-top:18px;position:relative;display:block;padding-right:40px;width:max-content}
+.slide.active .zero{animation:zeroPop 1.1s cubic-bezier(.2,1.4,.3,1) both .2s}
+@keyframes zeroPop{0%{opacity:0;transform:scale(.3)}60%{opacity:1;transform:scale(1.12)}100%{transform:scale(1)}}
+.chips{display:flex;flex-wrap:wrap;gap:16px;margin-top:34px}
+.chip{padding:14px 28px;border-radius:999px;background:#fff;border:2px solid var(--line);font-size:26px;font-weight:900;box-shadow:0 8px 0 rgba(28,176,246,.10);color:var(--ink)}
+.chip i{font-style:normal;color:var(--green-d);margin-right:8px}
+
+/* ---------- Slide 6 ---------- */
+.ringbox{display:flex;align-items:center;gap:36px;margin-top:40px}
+.ring{position:relative;width:250px;height:250px;flex:none}
+.ring svg{transform:rotate(-90deg)}
+.ring .num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:74px;font-weight:900;color:var(--ink)}
+.ring .num small{font-size:36px}
+.bars{margin-top:30px;width:760px}
+.brow{margin-bottom:20px}
+.brow .lab{display:flex;justify-content:space-between;font-size:25px;font-weight:800;color:var(--ink);margin-bottom:8px}
+.brow .lab em{font-style:normal;color:var(--muted)}
+.bar2{height:20px;border-radius:12px;background:#e6eef7;overflow:hidden}
+.bar2 i{display:block;height:100%;width:0;border-radius:12px;transition:width 1.3s cubic-bezier(.2,.8,.2,1)}
+
+/* ---------- Steps list (slide 7) ---------- */
+.s7-list{position:absolute;left:110px;top:325px;width:680px}
+.s7-item{display:flex;gap:22px;margin-bottom:10px;padding:14px 24px;border-radius:26px;border:2px solid transparent;transition:all .5s}
+.s7-item b{flex:none;width:52px;height:52px;border-radius:50%;background:var(--primary);color:#fff;font-size:28px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.s7-item div{font-size:28px;line-height:1.35;font-weight:700;color:var(--text)}
+.s7-item div strong{display:block;font-size:31px;color:var(--ink);font-weight:900}
+.s7-item.on{background:#fff;border-color:var(--gold);box-shadow:0 14px 34px rgba(255,180,0,.22)}
+
+/* ---------- Chat (slide 8) ---------- */
+.chat{position:absolute;left:110px;top:330px;width:780px;height:620px;background:#fff;border:2px solid var(--line);border-radius:34px;box-shadow:0 26px 60px rgba(28,176,246,.14);display:flex;flex-direction:column;overflow:hidden}
+.chat .head{display:flex;align-items:center;gap:16px;padding:18px 28px;border-bottom:2px solid #eef4fa;font-size:26px;font-weight:900}
+.chat .head img{width:56px;height:56px}
+.chat .head em{font-style:normal;margin-left:auto;font-size:19px;padding:6px 16px;border-radius:999px;background:#dcfae8;color:#0a9a55;letter-spacing:.08em}
+.chat .msgs{flex:1;padding:22px 28px;display:flex;flex-direction:column;justify-content:flex-end;gap:16px;overflow:hidden}
+.msg{display:flex;gap:14px;max-width:92%;flex:none}
+.msgs .step{display:none;transform:none;opacity:1}
+.msgs .step.show{display:flex;animation:rise .6s cubic-bezier(.2,.8,.2,1) both}
+.msg.user{align-self:flex-end}
+.msg.user .t{background:var(--primary);color:#fff;border-radius:26px 26px 6px 26px;font-weight:800}
+.msg.bot .t{background:#f1f6fb;border-radius:26px 26px 26px 6px;font-weight:700;color:var(--ink)}
+.msg .t{padding:14px 22px;font-size:24px;line-height:1.38}
+.msg img{width:50px;height:50px;flex:none}
+.dots{display:inline-flex;gap:7px}.dots i{width:12px;height:12px;border-radius:50%;background:#9db3c8;animation:blink 1s infinite}
+.dots i:nth-child(2){animation-delay:.2s}.dots i:nth-child(3){animation-delay:.4s}
+
+/* ---------- Slide 9 ---------- */
+.s9-list{position:absolute;left:110px;top:350px;width:720px}
+.s9-item{display:flex;gap:24px;margin-bottom:34px}
+.s9-item b{flex:none;width:68px;height:68px;border-radius:22px;background:var(--green);color:#fff;font-size:34px;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 7px 0 var(--green-d)}
+.s9-item:nth-child(2) b{background:var(--primary);box-shadow:0 7px 0 var(--primary-d)}
+.s9-item:nth-child(3) b{background:var(--orange);box-shadow:0 7px 0 #cc7a00}
+.s9-item div{font-size:28px;line-height:1.4;font-weight:700;color:var(--text)}
+.s9-item div strong{display:block;font-size:34px;color:var(--ink);font-weight:900;margin-bottom:4px}
+
+/* ---------- Slide 10 ---------- */
+#flow{position:absolute;left:110px;top:300px;width:1020px;height:520px}
+#flow svg{position:absolute;inset:0}
+.fn{position:absolute;border-radius:30px;background:#fff;border:3px solid var(--line);box-shadow:0 16px 36px rgba(28,176,246,.14);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12px 16px}
+.fn strong{font-size:32px;font-weight:900;line-height:1.15}
+.fn span{font-size:23px;font-weight:700;color:var(--text);margin-top:6px;line-height:1.3}
+.fn.stu{left:0;top:170px;width:210px;height:200px;border-radius:50%;border-color:#bfe9a0;background:linear-gradient(180deg,#f4fcea,#fff)}
+.fn.stu img{width:84px;height:84px;margin-bottom:-6px}.fn.stu span{font-size:18px;margin-top:2px;white-space:nowrap}
+.fn.mk{left:370px;top:170px;width:290px;height:200px;border-color:var(--primary)}
+.fn.tc{left:780px;top:40px;width:240px;height:150px;border-color:#bfe9a0}
+.fn.lt{left:780px;top:350px;width:240px;height:150px;border-color:#ffd9a0}
+.fn.tc strong{color:var(--green-d);font-size:44px}.fn.lt strong{color:#d97706;font-size:44px}
+.fn.tc em,.fn.lt em{font-style:normal;font-size:22px;font-weight:800;color:var(--text)}
+.coin{position:absolute;left:0;top:0;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff3b0,#ffc61a 60%,#e09a00);border:3px solid #e09a00;opacity:0;offset-rotate:0deg;animation:coin 2.6s linear infinite}
+.example{position:absolute;left:110px;top:840px;width:1020px;display:flex;align-items:center;justify-content:space-between;background:#fff;border:2px solid var(--line);border-radius:28px;padding:20px 34px;box-shadow:0 14px 34px rgba(28,176,246,.10)}
+.example .q{font-size:22px;font-weight:800;color:var(--muted);line-height:1.25;width:250px}
+.example .v{text-align:center}.example .v b{display:block;font-size:42px;font-weight:900}.example .v span{font-size:20px;font-weight:800;color:var(--muted)}
+.example .v b span{font-size:42px;font-weight:900;color:inherit}.example .arrow{font-size:38px;color:var(--muted);font-weight:900}
+.s10-cards{position:absolute;left:1190px;top:270px;width:620px}
+.rcard{display:flex;gap:20px;background:#fff;border:2px solid var(--line);border-radius:26px;padding:20px 24px;margin-bottom:16px;box-shadow:0 12px 30px rgba(28,176,246,.09)}
+.rcard i{flex:none;width:58px;height:58px;border-radius:18px;background:var(--primary);color:#fff;font-style:normal;font-size:26px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.rcard.main{border-color:var(--primary);background:linear-gradient(180deg,#eef9ff,#fff)}
+.rcard strong{display:block;font-size:29px;font-weight:900;line-height:1.15}
+.rcard span{display:block;font-size:22px;line-height:1.38;font-weight:700;color:var(--text);margin-top:5px}
+.later-tag{display:inline-block;margin-top:2px;padding:10px 24px;border-radius:999px;background:#fff;border:2px dashed #b9cde0;font-size:22px;font-weight:800;color:var(--muted)}
+
+/* ---------- Slide 11 (Traction & Đại học lớn) ---------- */
+.s11-traction{position:absolute;left:110px;top:235px;width:1700px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.tr-card{background:#fff;border:2px solid var(--line);border-radius:26px;padding:20px 28px;box-shadow:0 14px 35px rgba(28,176,246,.10);display:flex;align-items:center;gap:20px}
+.tr-card .tr-num{font-size:52px;font-weight:900;line-height:1;color:var(--primary);letter-spacing:-.02em}
+.tr-card:nth-child(2) .tr-num{color:var(--green-d)}
+.tr-card:nth-child(3) .tr-num{color:var(--orange)}
+.tr-card strong{display:block;font-size:24px;font-weight:900;color:var(--ink);line-height:1.2}
+.tr-card span{display:block;font-size:18px;font-weight:700;color:var(--muted);margin-top:4px}
+
+.s11-partners{position:absolute;left:110px;top:405px;width:1700px;background:rgba(255,255,255,.9);border:2px solid var(--line);border-radius:26px;padding:20px 28px;box-shadow:0 14px 35px rgba(28,176,246,.08)}
+.part-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.part-head .ph-title{font-size:18px;font-weight:900;letter-spacing:.08em;color:var(--primary-d);text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.part-head .ph-title i{width:8px;height:8px;border-radius:50%;background:var(--green-d);box-shadow:0 0 10px var(--green)}
+.part-head .ph-note{font-size:17px;font-weight:800;color:var(--muted)}
+.uni-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.uni-card{background:#f8fbfe;border:1.5px solid #ddecfa;border-radius:18px;padding:14px 16px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:all .3s}
+.uni-card:hover{background:#fff;border-color:var(--primary);box-shadow:0 10px 24px rgba(28,176,246,.15);transform:translateY(-2px)}
+.uni-badge{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#0369a1,#0284c7);color:#fff;font-size:17px;font-weight:900;display:flex;align-items:center;justify-content:center;margin-bottom:8px;box-shadow:0 4px 10px rgba(2,132,199,.25)}
+.uni-card:nth-child(2) .uni-badge{background:linear-gradient(135deg,#15803d,#16a34a)}
+.uni-card:nth-child(3) .uni-badge{background:linear-gradient(135deg,#b91c1c,#dc2626)}
+.uni-card:nth-child(4) .uni-badge{background:linear-gradient(135deg,#1d4ed8,#2563eb)}
+.uni-card:nth-child(5) .uni-badge{background:linear-gradient(135deg,#7c2d12,#c2410c)}
+.uni-card:nth-child(6) .uni-badge{background:linear-gradient(135deg,#4338ca,#6366f1)}
+.uni-card strong{font-size:18px;font-weight:900;color:var(--ink);display:block;line-height:1.2}
+.uni-card span{font-size:13px;font-weight:700;color:var(--muted);margin-top:4px;line-height:1.2}
+
+.strip{position:absolute;left:110px;top:615px;width:1700px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.strip div{border-radius:20px;overflow:hidden;border:2px solid var(--line);box-shadow:0 12px 28px rgba(28,176,246,.12);background:#fff}
+.strip img{width:100%;height:220px;object-fit:cover;object-position:left top}
+.strip span{display:block;padding:8px 16px;font-size:18px;font-weight:900;color:var(--ink);background:#f4fbff}
+
+/* ---------- Slide 12 ---------- */
+.s12-left{position:absolute;left:110px;top:70px;width:1130px}
+.s12-h{font-size:70px;line-height:1.05;font-weight:900;letter-spacing:-.02em;margin-top:26px}
+.fund{display:flex;align-items:center;gap:44px;margin-top:40px}
+.donut{position:relative;width:290px;height:290px;flex:none}
+.donut svg{transform:rotate(-90deg)}
+.donut circle{fill:none;stroke-width:34;transition:stroke-dasharray 1.4s cubic-bezier(.2,.8,.2,1)}
+.donut .c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:30px;font-weight:900;line-height:1.1;text-align:center}
+.legend div{display:flex;align-items:center;gap:16px;font-size:23px;font-weight:700;margin-bottom:12px;line-height:1.25;color:#e8f6ff}
+.legend b{flex:none;font-size:30px;font-weight:900;width:78px}
+.legend i{flex:none;width:14px;height:46px;border-radius:7px}
+.legend span strong{color:#fff;font-weight:800}
+.team{display:flex;gap:18px;margin-top:34px}
+.team div{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.2);border-radius:22px;padding:14px 22px;font-size:22px;font-weight:700;color:#cfeaff;line-height:1.3}
+.team strong{display:block;font-size:26px;font-weight:900;color:#fff}
+.close-line{position:absolute;right:100px;bottom:240px;width:640px;text-align:center;font-size:50px;line-height:1.15;font-weight:900;letter-spacing:-.01em}
+.cta{position:absolute;right:130px;bottom:118px;padding:22px 48px;border-radius:24px;background:linear-gradient(180deg,#5fd93a,#46a302);color:#fff;font-size:30px;font-weight:900;letter-spacing:.04em;text-transform:uppercase;box-shadow:0 10px 0 #2f7a00,0 24px 50px rgba(88,204,2,.4);animation:pulseGlow 2.4s ease-in-out infinite}
+
+/* ---------- HUD ---------- */
+/* ?still : tắt mọi hiệu ứng, hiện trạng thái cuối (dùng để in PDF hoặc chụp ảnh) */
+body.still *{animation:none!important;transition:none!important}
+body.still .slide .r{opacity:1!important}
+#progress{position:fixed;left:0;top:0;height:6px;width:100%;background:rgba(255,255,255,.12);z-index:50}
+#progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#1cb0f6,#58cc02);transition:width .5s}
+#counter{position:fixed;right:22px;bottom:16px;z-index:50;font-size:15px;font-weight:900;color:#fff;background:rgba(7,26,51,.62);padding:7px 14px;border-radius:999px;backdrop-filter:blur(8px)}
+#dots{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);display:flex;gap:8px;z-index:50;opacity:.0;transition:opacity .4s}
+body:hover #dots{opacity:1}
+#dots i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.35);cursor:pointer;transition:all .3s}
+#dots i.on{background:#fff;width:26px;border-radius:6px}
+#hint{position:fixed;left:50%;bottom:44px;transform:translateX(-50%);z-index:50;background:rgba(7,26,51,.78);color:#fff;padding:12px 24px;border-radius:999px;font-size:16px;font-weight:800;backdrop-filter:blur(8px);transition:opacity .8s}
+#timer{position:fixed;left:18px;top:18px;z-index:60;display:none;background:rgba(7,26,51,.82);color:#fff;border-radius:18px;padding:10px 18px;backdrop-filter:blur(8px)}
+#timer b{font-size:34px;font-weight:900;letter-spacing:.02em}
+#timer span{display:block;font-size:13px;font-weight:800;color:#9fdcff}
+#timer.warn b{color:#ffb74d}#timer.over b{color:#ff6b6b}
+#notes{position:fixed;left:50%;bottom:70px;transform:translateX(-50%);width:min(1100px,92vw);z-index:55;display:none;background:rgba(7,26,51,.92);color:#fff;border-radius:22px;padding:20px 28px;font-size:20px;line-height:1.5;font-weight:700;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18)}
+#notes small{display:block;font-size:13px;letter-spacing:.12em;color:#9fdcff;font-weight:900;margin-bottom:6px;text-transform:uppercase}
+#fs{position:fixed;right:22px;top:16px;z-index:50;width:44px;height:44px;border-radius:14px;border:0;background:rgba(7,26,51,.55);color:#fff;font-size:22px;cursor:pointer;backdrop-filter:blur(8px);opacity:.0;transition:opacity .3s}
+body:hover #fs{opacity:1}
+
+/* ---------- HUD Brand pill ---------- */
+#hud-brand{position:fixed;left:34px;top:20px;z-index:60;display:flex;align-items:center;gap:10px;padding:8px 18px;border-radius:999px;background:rgba(7,26,51,.78);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.16);color:#9fdcff;font-size:16px;font-weight:900;letter-spacing:.06em;pointer-events:none}
+#hud-brand .dot{width:8px;height:8px;border-radius:50%;background:#58cc02;box-shadow:0 0 10px #58cc02}
+
+/* ---------- Slide 8: Interactive 3D Math Visualizer & Layout ---------- */
+.s8-chat{position:absolute;left:100px;top:270px;width:660px;height:720px;background:#fff;border:2px solid var(--line);border-radius:32px;box-shadow:0 26px 60px rgba(28,176,246,.14);display:flex;flex-direction:column;overflow:hidden}
+.s8-chat .head{display:flex;align-items:center;gap:16px;padding:18px 26px;border-bottom:2px solid #eef4fa;font-size:24px;font-weight:900}
+.s8-chat .head img{width:52px;height:52px}
+.s8-chat .head em{font-style:normal;margin-left:auto;font-size:17px;padding:6px 14px;border-radius:999px;background:#dcfae8;color:#0a9a55;letter-spacing:.08em}
+.s8-chat .msgs{flex:1;padding:20px 24px;display:flex;flex-direction:column;justify-content:flex-end;gap:14px;overflow:hidden}
+.s8-chat .msg{display:flex;gap:12px;max-width:94%;flex:none}
+.s8-chat .msg .t{padding:13px 20px;font-size:21px;line-height:1.36}
+.s8-chat .callout-3d{background:linear-gradient(135deg,#eef9ff,#f4f3ff);border:2px solid #c7d2fe;border-radius:20px;padding:14px 20px;margin-top:6px;font-size:20px;font-weight:800;color:#3730a3;display:flex;align-items:center;gap:12px}
+
+.s8-frame{position:absolute;left:790px;top:270px;width:1030px;height:720px;background:#0b1329;border-radius:30px;overflow:hidden;box-shadow:0 40px 90px rgba(7,26,51,.55),0 0 0 1px rgba(255,255,255,.14);display:flex;flex-direction:column}
+.s8-frame .bar{height:50px;background:#131f37;display:flex;align-items:center;gap:10px;padding:0 20px;border-bottom:1px solid rgba(255,255,255,.08);flex:none}
+.s8-frame .bar i{width:13px;height:13px;border-radius:50%;background:#ff6b6b}
+.s8-frame .bar i:nth-child(2){background:#ffd43b}
+.s8-frame .bar i:nth-child(3){background:#51cf66}
+.s8-frame .bar span{margin-left:12px;background:rgba(255,255,255,.08);border-radius:999px;padding:4px 18px;font-size:16px;color:#94a3b8;font-weight:700}
+.bar-modes{margin-left:auto;display:flex;gap:8px}
+.m-pill{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);color:#cbd5e1;padding:5px 14px;border-radius:999px;font-size:14px;font-weight:800;cursor:pointer;transition:all .25s}
+.m-pill:hover{background:rgba(255,255,255,.2);color:#fff}
+.m-pill.active{background:linear-gradient(90deg,#1cb0f6,#a560e8);border-color:transparent;color:#fff;box-shadow:0 0 12px rgba(28,176,246,.5)}
+
+.viz-body{flex:1;display:flex;flex-direction:column;padding:18px 24px 20px;background:radial-gradient(circle at 50% 30%,#111d38 0%,#080e1e 100%)}
+.viz-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
+.viz-head h4{font-size:25px;font-weight:900;color:#fff;letter-spacing:-.01em}
+.viz-head p{font-size:16px;font-weight:700;color:#94a3b8;margin-top:3px}
+.viz-actions{display:flex;gap:10px}
+.vbtn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#e2e8f0;padding:6px 14px;border-radius:12px;font-size:14px;font-weight:800;cursor:pointer;transition:all .2s}
+.vbtn:hover{background:rgba(255,255,255,.16);color:#fff}
+
+.canvas-box{position:relative;width:100%;height:385px;border-radius:20px;background:#050914;overflow:hidden;border:1px solid rgba(255,255,255,.08);box-shadow:inset 0 0 50px rgba(0,0,0,.6)}
+.canvas-box canvas{display:block;width:100%;height:100%;cursor:grab}
+.canvas-box canvas:active{cursor:grabbing}
+.eq-badge{position:absolute;left:18px;top:16px;background:rgba(15,23,42,.82);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.22);color:#38bdf8;padding:8px 18px;border-radius:14px;font-size:19px;font-weight:900;letter-spacing:.02em;box-shadow:0 6px 18px rgba(0,0,0,.4)}
+.spectrum-legend{position:absolute;left:18px;bottom:14px;display:flex;align-items:center;gap:10px;background:rgba(15,23,42,.82);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.14);padding:6px 14px;border-radius:12px;font-size:14px;font-weight:800;color:#94a3b8}
+.spectrum-bar{width:110px;height:10px;border-radius:5px;background:linear-gradient(90deg,#0055ff,#00ffcc,#ffee00,#ff2200)}
+.drag-hint{position:absolute;right:18px;bottom:14px;font-size:13px;font-weight:700;color:#64748b;letter-spacing:.04em}
+
+.viz-sliders{margin-top:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:12px 20px;display:flex;flex-direction:column;gap:10px}
+.slider-row{display:flex;align-items:center;gap:16px;font-size:17px;font-weight:800;color:#e2e8f0}
+.slider-row label{width:220px;flex:none}
+.slider-row label b{color:#38bdf8}
+.slider-row input[type="range"]{flex:1;height:8px;border-radius:4px;background:#1e293b;outline:none;-webkit-appearance:none;cursor:pointer}
+.slider-row input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#38bdf8;border:3px solid #fff;box-shadow:0 0 10px rgba(56,189,248,.8);cursor:pointer}
+.slider-row .val-num{width:70px;text-align:right;font-size:19px;font-weight:900;color:#38bdf8}
+
+</style>
+</head>
+<body>
+<div id="viewport"><div id="stage">
+
+<!-- ================= 1. SỨ MỆNH & HIỆN TRẠNG VĨ MÔ ================= -->
+<section class="slide dark" data-time="35" data-note="Mở đầu bằng hiện trạng và cú hích vĩ mô của Bộ GD&ĐT: 2027 thí điểm thi THPT trên máy tính, 2030 phổ cập toàn quốc. Sau đó đi vào sứ mệnh: mọi học sinh đều xứng đáng có một người thầy hiểu mình.">
+  <div id="stars"></div>
+  <div class="glow r r-fade" style="left:1180px;top:430px;width:760px;height:760px;--d:.2s"></div>
+  <div class="s1-wrap">
+    <div><span class="eyebrow r" style="--d:.1s">Sứ mệnh & Bối cảnh thời đại</span></div>
+    <h1 class="s1-h">
+      <span class="r" style="--d:.4s">Mọi học sinh Việt Nam</span>
+      <span class="r" style="--d:1.0s">đều xứng đáng có</span>
+      <span class="r" style="--d:1.6s">một người thầy <span class="grad" style="display:inline">hiểu mình.</span></span>
+    </h1>
+    <p class="s1-sub r" style="--d:2.4s">Không phụ thuộc vào việc gia đình có đủ tiền cho lớp học thêm hay không.</p>
+    <div class="s1-foot r" style="--d:3.0s"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> <strong>luyenthicaptoc.vn</strong> · Nền tảng luyện thi thích ứng AI · Vòng Angel 500Tr (10%)</div>
+  </div>
+
+  <!-- Cột phải: Thẻ Hiện trạng & Cú hích vĩ mô Bộ GD&ĐT -->
+  <div class="s1-macro r r-right" style="--d:1.0s">
+    <div class="macro-badge-head">
+      <span class="macro-tag"><span class="m-dot"></span>HIỆN TRẠNG VĨ MÔ · BỘ GD&ĐT</span>
+      <span class="macro-policy">Phương án thi số hóa quốc gia</span>
+    </div>
+    <div class="macro-title">Lộ trình chuyển đổi: Thi tốt nghiệp trên máy tính</div>
+    <div class="macro-timeline">
+      <div class="m-step">
+        <div class="m-year">2027</div>
+        <div class="m-desc">
+          <strong>Bắt đầu thí điểm</strong>
+          <span>Thi trắc nghiệm trên máy tính tại các địa phương đủ điều kiện</span>
+        </div>
+      </div>
+      <div class="m-arrow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></div>
+      <div class="m-step highlight">
+        <div class="m-year">2030</div>
+        <div class="m-desc">
+          <strong>Phổ cập toàn quốc</strong>
+          <span>Đồng bộ 100% môn thi trắc nghiệm THPT trên máy tính</span>
+        </div>
+      </div>
+    </div>
+    <div class="macro-fact">
+      <div class="pulse-point"></div>
+      <div><strong>1.000.000+ thí sinh/năm</strong> bắt buộc chuyển từ làm đề giấy sang thi trên máy tính.<br/><strong>luyenthicaptoc.vn</strong> là nền tảng tiên phong đón đầu kỳ thi số hóa.</div>
+    </div>
+  </div>
+
+  <img class="cut r r-pop" style="right:70px;bottom:20px;width:440px;--d:1.8s;animation-name:pop,floaty;animation-duration:.9s,6s;animation-delay:1.8s,2.5s;animation-iteration-count:1,infinite;animation-fill-mode:both,none" src="assets/cut-xin-chao.png" alt="Mascot Cụt chào" />
+</section>
+
+<!-- ================= 2. CÂU CHUYỆN HỌC SINH ================= -->
+<section class="slide" data-steps="6" data-time="55" data-note="Phá băng bằng xấp đề in A4 gửi tặng BGK: câu chuyện thật đứa em họ chắt chiu tiền in xấp đề làm ngày đêm, đêm mưa dột nước làm ướt sũng nhòe hết đề khóc nức nở; 1-2h đêm hỏi ChatGPT không có lưu vết; Dì giáo viên trường huyện dạy giỏi nhưng khó tiếp cận học sinh cả nước. Chốt: học sinh không thiếu cố gắng, các em thiếu một hệ thống lưu vết lỗi sai.">
+  <a href="De_Thi_Thu_Toan_2026_MaDe101_Chuan_Bo_GDDT.html" target="_blank" class="demo-tag" style="background:#eff6ff;border-color:#bfdbfe;color:#1e40af;text-decoration:none;cursor:pointer">🖨️ Xem & In Xấp Đề Thi Thử A4 (Đạo Cụ Sân Khấu)</a>
+  <span class="eyebrow r">Câu chuyện có thật</span>
+  <h2 class="h2 r" style="--d:.15s">Từ giọt nước mắt <span class="b">xấp đề ướt sũng</span> đến ước mơ đại học.</h2>
+  <div class="s2-grid" id="s2grid">
+    <div class="scard step" data-step="1"><div class="tag">Mục tiêu</div><h3>5,8 lên 8,0</h3><p>Nam đang được 5,8 điểm Toán. Em khao khát đạt 8,0 để bước chân vào trường đại học mơ ước.</p></div>
+    <div class="scard step" data-step="2"><div class="tag">Nỗi đau 01</div><h3>Xấp đề in & Đêm mưa dột</h3><p>Chắt chiu tiền in xấp đề photo dày cộp làm ngày đêm. Một đêm mưa mái nhà dột, nước làm ướt sũng nhòe hết bài thi tâm huyết.</p></div>
+    <div class="scard warn step" data-step="3"><div class="tag">Nỗi đau 02</div><h3>1-2h đêm: Thầy cô đã ngủ</h3><p>Làm xong không biết đúng sai. Chụp hỏi ChatGPT thì 2 ngày sau quên sạch vì không có chỗ lưu vết lỗi sai.</p></div>
+    <div class="scard warn step" data-step="4"><div class="tag">Nỗi đau 03</div><h3>Luyện thi tốn kém</h3><p>Lớp học lò và khóa học đắt đỏ. Gia đình hoàn cảnh khó khăn ở quê không đủ điều kiện cho em theo học thêm tháng 2-3 triệu.</p></div>
+    <div class="scard teach step" data-step="5"><div class="tag">Ở phía bên kia</div><h3>Dì của tôi, giáo viên trường huyện</h3><p>Dì dạy rất giỏi, tâm huyết nhưng chỉ dạy được vài em học sinh quanh xóm, không có nền tảng để lan tỏa tri thức đến nhiều học sinh hơn.</p></div>
+  </div>
+  <p class="s2-close step" data-step="6">Nam không thiếu cố gắng. <span class="b" style="color:var(--primary)">Nam thiếu một hệ thống lưu vết lỗi sai.</span></p>
+  <div class="bubble r r-fade" style="--d:.8s" id="s2bubble">Mình sẽ cố gắng.</div>
+  <img class="cut" id="s2cut" style="right:90px;bottom:20px;width:560px;animation:floaty 6s ease-in-out infinite" src="assets/cut-no-luc.png" alt="Cụt" />
+</section>
+
+<!-- ================= 3. VÌ SAO LÀM ================= -->
+<section class="slide" data-time="35" data-note="Ba niềm tin dẫn đường sinh ra từ chính câu chuyện đứa em họ và người Dì giáo viên trường huyện: điểm số không phụ thuộc điều kiện kinh tế, cần biết sai ở đâu hơn là in thêm đề, và tri thức người thầy như Dì tôi phải được lan tỏa rộng rãi.">
+  <span class="eyebrow r">Vì sao chúng tôi làm điều này</span>
+  <h2 class="h2 r" style="--d:.15s">Ba điều chúng tôi <span class="b">tin</span>.</h2>
+  <div class="s3-rows">
+    <div class="belief r r-left" style="--d:.6s"><div class="n">1</div><p>Điểm số không nên phụ thuộc vào điều kiện kinh tế của gia đình.</p></div>
+    <div class="belief r r-left" style="--d:1.4s"><div class="n">2</div><p>Học sinh cần biết mình sai ở đâu, hơn là cắm đầu in thêm một xấp đề nữa.</p></div>
+    <div class="belief r r-left" style="--d:2.2s"><div class="n">3</div><p>Giá trị và tri thức của những người thầy như Dì tôi phải được lan tỏa rộng rãi đến muôn nơi.</p></div>
+  </div>
+  <img class="cut r r-pop" style="right:100px;bottom:30px;width:600px;--d:1s;animation-name:pop,floaty;animation-duration:.9s,6s;animation-delay:1s,2s;animation-iteration-count:1,infinite;animation-fill-mode:both,none" src="assets/cut-tot-nghiep.png" alt="Cụt tốt nghiệp" />
+</section>
+
+<!-- ================= 4. VÒNG LẶP ================= -->
+<section class="slide" data-time="30" data-note="Mỗi ngày học sinh đi qua một vòng: chẩn đoán, luyện đề, xem lỗi sai, hỏi Cụt, và nếu cần thì vào lớp của giáo viên. Vòng lặp này là thứ giữ học sinh ở lại và đưa họ đến với giáo viên.">
+  <span class="eyebrow r">Giải pháp</span>
+  <h2 class="h2 r" style="--d:.15s;max-width:880px">Một vòng lặp học tập, <span class="b">quay mỗi ngày</span>.</h2>
+  <div class="s4-list">
+    <div class="s4-item r r-left" style="--d:.8s"><b style="background:var(--primary)">1</b><div><strong>Chẩn đoán</strong>Mini test 5 câu để biết em đang đứng ở đâu.</div></div>
+    <div class="s4-item r r-left" style="--d:1.2s"><b style="background:var(--green)">2</b><div><strong>Luyện đề</strong>Đề được gợi ý đúng vùng kiến thức còn yếu.</div></div>
+    <div class="s4-item r r-left" style="--d:1.6s"><b style="background:var(--orange)">3</b><div><strong>Sổ lỗi sai</strong>Mỗi câu sai được giải thích vì sao sai.</div></div>
+    <div class="s4-item r r-left" style="--d:2.0s"><b style="background:var(--purple)">4</b><div><strong>Hỏi Cụt</strong>Gia sư AI trả lời bất cứ lúc nào.</div></div>
+    <div class="s4-item r r-left" style="--d:2.4s"><b style="background:var(--primary-d)">5</b><div><strong>Lớp của giáo viên</strong>Cần học sâu hơn thì có thầy cô giỏi chờ sẵn.</div></div>
+  </div>
+  <div id="loop"></div>
+</section>
+
+<!-- ================= 5. KHÔNG THU TIỀN LÀM ĐỀ ================= -->
+<section class="slide" data-time="25" data-note="Nhấn mạnh cam kết: không thu tiền làm đề. Làm đề còn được thưởng xu. Đây là lý do học sinh tin và đến đông, và học sinh đông là thứ giáo viên cần. Chỉ vào dải vàng trên màn hình để thấy xu thưởng thật.">
+  <span class="eyebrow r">Cam kết của chúng tôi</span>
+  <div class="zero grad">0đ</div>
+  <h2 class="h2 r" style="--d:.7s;font-size:56px;max-width:800px">Chúng tôi không thu tiền làm đề của các bạn.</h2>
+  <div class="chips" style="max-width:800px">
+    <span class="chip r" style="--d:1.2s"><i>✓</i>Ngân hàng đề miễn phí</span>
+    <span class="chip r" style="--d:1.4s"><i>✓</i>Báo cáo chẩn đoán</span>
+    <span class="chip r" style="--d:1.6s"><i>✓</i>Sổ lỗi sai thông minh</span>
+  </div>
+  <p class="lead r" style="--d:1.9s;margin-top:30px;max-width:800px">Làm đề hoàn toàn miễn phí & nhận xu thưởng để học các khóa bổ trợ của giáo viên.</p>
+  <div class="frame r" style="left:940px;top:170px;width:880px;--d:.5s">
+    <div class="bar"><i></i><i></i><i></i><span>https://luyenthicaptoc.vn/dau-truong</span></div>
+    <div class="vp"><img src="assets/shot_11_exams.jpg" alt="Ngân hàng đề miễn phí" /><div class="spot soft on" style="left:19%;top:33.6%;width:77%;height:8.6%"></div></div>
+  </div>
+</section>
+
+<!-- ================= 6. AI 1 ================= -->
+<section class="slide" data-time="50" data-note="Chỉ 5 câu mini test, hệ thống ước tính xác suất đạt mục tiêu và mức làm chủ từng chuyên đề. Nói thẳng đây là bản demo giao diện, mô hình AI thật sẽ làm ở giai đoạn 1 bằng vốn gọi lần này.">
+  <div class="demo-tag" style="background:#ecfdf5;border-color:#a7f3d0;color:#065f46">Đã ra mắt thực tế · 10.000+ Sĩ tử đang sử dụng</div>
+  <span class="eyebrow r">AI 01 · Đo lường mức độ học tập</span>
+  <h2 class="h2 r" style="--d:.15s;max-width:860px">Chỉ 5 câu, Cụt biết em <span class="b">đang đứng ở đâu</span>.</h2>
+  <div style="position:absolute;left:110px;top:400px;width:820px">
+    <div class="ringbox r" style="--d:.7s">
+      <div class="ring">
+        <svg width="250" height="250" viewBox="0 0 250 250"><circle cx="125" cy="125" r="105" fill="none" stroke="#e6eef7" stroke-width="26"/><circle id="ringfg" cx="125" cy="125" r="105" fill="none" stroke="url(#rg)" stroke-width="26" stroke-linecap="round" stroke-dasharray="659.7" stroke-dashoffset="659.7" style="transition:stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1)"/><defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1cb0f6"/><stop offset="1" stop-color="#58cc02"/></linearGradient></defs></svg>
+        <div class="num"><span data-count data-to="76">0</span><small>%</small></div>
+      </div>
+      <div><p class="lead" style="font-weight:900;color:var(--ink);font-size:34px;line-height:1.2">Xác suất đạt mục tiêu 8,0</p><p class="lead" style="font-size:26px;margin-top:8px">Từ điểm hiện tại 5,8, cần tăng thêm 2,2 điểm.</p></div>
+    </div>
+    <div class="bars r" style="--d:1s">
+      <div class="brow"><div class="lab">Khái niệm trọng tâm <em>Cần củng cố</em></div><div class="bar2"><i data-w="35" style="background:var(--red)"></i></div></div>
+      <div class="brow"><div class="lab">Kỹ năng tính toán <em>Trung bình</em></div><div class="bar2"><i data-w="60" style="background:var(--orange)"></i></div></div>
+      <div class="brow"><div class="lab">Nhận biết đồ thị <em>Rất tốt</em></div><div class="bar2"><i data-w="75" style="background:var(--green)"></i></div></div>
+    </div>
+  </div>
+  <div class="frame r r-right" style="left:1000px;top:190px;width:820px;--d:.6s">
+    <div class="bar"><i></i><i></i><i></i><span>https://luyenthicaptoc.vn/radar-nang-luc</span></div>
+    <div class="vp" style="aspect-ratio:750/560"><img src="assets/shot_01_analysis.jpg" alt="Báo cáo phân tích năng lực" style="position:absolute;width:185.07%;left:-42.67%;top:0" /></div>
+  </div>
+</section>
+
+<!-- ================= 7. AI 2 ================= -->
+<section class="slide" data-steps="4" data-time="45" data-note="Bấm từng bước: câu sai, đáp án đúng, vì sao sai, chỉ dẫn vá lỗi. Nhấn mạnh: học sinh không chỉ biết mình sai mà còn biết sai vì đâu và làm gì tiếp theo.">
+  <div class="demo-tag" style="background:#ecfdf5;border-color:#a7f3d0;color:#065f46">Tính năng đang hoạt động · Tự động bắt lỗi sai</div>
+  <span class="eyebrow r">AI 02 · Kiểm tra lỗi sai</span>
+  <h2 class="h2 r" style="--d:.15s;max-width:800px">Biến mỗi câu sai thành <span class="b">một bước tiến</span>.</h2>
+  <div class="s7-list" id="s7list">
+    <div class="s7-item step" data-step="1"><b>1</b><div><strong>Tự thu thập câu sai</strong>Mọi câu làm sai trong bài thi được gom về một chỗ.</div></div>
+    <div class="s7-item step" data-step="2"><b>2</b><div><strong>Đối chiếu đáp án đúng</strong>Em thấy ngay mình chọn gì và đáp án đúng là gì.</div></div>
+    <div class="s7-item step" data-step="3"><b>3</b><div><strong>Giải thích vì sao sai</strong>Nhầm công thức nguyên hàm x² thành 2x² và tính sai cận.</div></div>
+    <div class="s7-item step" data-step="4"><b>4</b><div><strong>Chỉ dẫn vá lỗi</strong>Luyện 10 câu nguyên hàm cơ bản rồi làm lại ngay tại chỗ.</div></div>
+  </div>
+  <div class="frame r r-right" style="left:830px;top:190px;width:990px;--d:.5s">
+    <div class="bar"><i></i><i></i><i></i><span>https://luyenthicaptoc.vn/so-loi-sai</span></div>
+    <div class="vp"><img src="assets/shot_02_mistakes.jpg" alt="Sổ lỗi sai thông minh" /><div class="spot" id="s7spot"></div></div>
+  </div>
+</section>
+
+<!-- ================= 8. AI 3 ================= -->
+<section class="slide" data-steps="3" data-time="45" data-note="Cụt không chỉ chat văn bản. Cụt tự động dựng mô hình hình học 3D tương tác. Học sinh rê chuột xoay 360 độ, kéo thanh trượt hệ số a, b để nhìn thấy thiết diện uốn cong thời gian thực.">
+  <div class="demo-tag" style="background:#f5eeff;border-color:#d8b4fe;color:#7e22ce">Độc quyền luyenthicaptoc.vn · WebGL 3D Math Engine</div>
+  <span class="eyebrow r">AI 03 · Cụt — Gia sư AI trực quan hóa hình học 3D</span>
+  <h2 class="h2 r" style="--d:.15s;max-width:1450px;font-size:54px">Không chỉ trả lời chữ. Cụt <span class="b">dựng mô hình 3D tương tác</span> tức thì.</h2>
+  
+  <!-- Cột trái: Khung Chat Socratic -->
+  <div class="s8-chat r" style="--d:.5s">
+    <div class="head">
+      <img src="assets/cut-xin-chao.png" alt="Cụt" />
+      <div>
+        <div style="line-height:1.1">Cụt · Gia Sư Hình Học 3D</div>
+        <small style="font-size:15px;color:var(--muted);font-weight:700">Trực quan hóa Toán 12 & ĐGNL</small>
+      </div>
+      <em>ONLINE</em>
+    </div>
+    <div class="msgs" id="msgs">
+      <div class="msg user step" data-step="1">
+        <div class="t">Cụt ơi, câu 42: Mặt cong yên ngựa z = ax² - by² và hình nón cắt thiết diện em không tưởng tượng được hình dạng!</div>
+      </div>
+      <div class="msg bot step" data-step="1" data-typed="1">
+        <img src="assets/cut-xin-chao.png" alt=""/>
+        <div class="t" data-full="Đừng lo Nam ơi! Cụt đã sinh ngay mô hình 3D bên phải. Em thử kéo thanh trượt hệ số a và b hoặc xoay chuột 360° để xem độ dốc và thiết diện uốn cong nhé!"></div>
+      </div>
+      <div class="msg user step" data-step="2">
+        <div class="t">Thầy cô trên lớp vẽ 2D lên bảng em khó hình dung, nhìn mô hình 3D này thấy ngay điểm yên ngựa!</div>
+      </div>
+      <div class="msg bot step" data-step="2" data-typed="2">
+        <img src="assets/cut-xin-chao.png" alt=""/>
+        <div class="t" data-full="Chính vì vậy luyenthicaptoc.vn trang bị 3D Math Engine: biến công thức trừu tượng thành hình học chạm và xoay được, giúp em thấu hiểu bản chất trong 30 giây."></div>
+      </div>
+      <div class="msg user step" data-step="3">
+        <div class="t">Có áp dụng cho khối nón, lăng trụ và bài toán tích phân thể tích không Cụt?</div>
+      </div>
+      <div class="msg bot step" data-step="3" data-typed="3">
+        <img src="assets/cut-xin-chao.png" alt=""/>
+        <div class="t" data-full="Có đủ em nhé! Bấm nút 'Hình Nón & Thiết Diện' bên trên là thấy ngay mặt cắt đường tròn thay đổi theo cao độ h. Học trực quan thế này không bao giờ sợ điểm 8+!"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cột phải: Widget 3D Math Interactive Canvas -->
+  <div class="s8-frame r r-right" style="--d:.6s">
+    <div class="bar">
+      <i></i><i></i><i></i>
+      <span>https://luyenthicaptoc.vn/ai-tutor/cut-3d-visualizer</span>
+      <div class="bar-modes">
+        <button class="m-pill active" id="btnModeSaddle">Mặt Yên Ngựa 3D</button>
+        <button class="m-pill" id="btnModeCone">Hình Nón & Thiết Diện</button>
+      </div>
+    </div>
+    <div class="viz-body">
+      <div class="viz-head">
+        <div>
+          <h4 id="vizTitle">Mặt cong Hyperbolic Paraboloid</h4>
+          <p id="vizDesc">Bề mặt yên ngựa 3D tương tác theo phương trình <i>z = ax² - by²</i></p>
+        </div>
+        <div class="viz-actions">
+          <button id="btnToggleSpin" class="vbtn"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-1px;margin-right:4px"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> Tạm dừng xoay</button>
+          <button id="btnResetView" class="vbtn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:4px"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg> Đặt lại góc nhìn</button>
+        </div>
+      </div>
+      <div class="canvas-box">
+        <div class="eq-badge" id="eqBadge">z = 0.50x² - 0.50y²</div>
+        <canvas id="math3d" width="982" height="385"></canvas>
+        <div class="spectrum-legend">
+          <span>Thấp (-z)</span>
+          <div class="spectrum-bar"></div>
+          <span>Cao (+z)</span>
+        </div>
+        <div class="drag-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px"><rect x="5" y="2" width="14" height="20" rx="7"/><path d="M12 6v4"/></svg>Rê chuột xoay 360° đa góc nhìn</div>
+      </div>
+      <div class="viz-sliders">
+        <div class="slider-row">
+          <label id="lblParamA">Hệ số <b>a</b> (độ dốc trục x):</label>
+          <input type="range" id="sliderA" min="0.10" max="1.00" step="0.05" value="0.50" />
+          <span class="val-num" id="valA">0.50</span>
+        </div>
+        <div class="slider-row">
+          <label id="lblParamB">Hệ số <b>b</b> (độ dốc trục y):</label>
+          <input type="range" id="sliderB" min="0.10" max="1.00" step="0.05" value="0.50" />
+          <span class="val-num" id="valB">0.50</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 9. GIÁO VIÊN ================= -->
+<section class="slide" data-time="35" data-note="Phía giáo viên: AI Teaching Assistant chỉ ra 67% lớp đang sai nguyên hàm từng phần và gợi ý tổ chức buổi chữa đề riêng. Giáo viên có thêm học sinh và dữ liệu, LTCT có thêm doanh thu từ mỗi khóa học.">
+  <div class="demo-tag">Demo giao diện · AI tích hợp ở giai đoạn 1</div>
+  <span class="eyebrow r">Phía giáo viên</span>
+  <h2 class="h2 r" style="--d:.15s;max-width:760px">Giáo viên giỏi chỉ cần <span class="g">tập trung dạy</span>.</h2>
+  <div class="s9-list">
+    <div class="s9-item r r-left" style="--d:.8s"><b>1</b><div><strong>Mở khóa, mở lớp livestream</strong>Có sẵn công cụ tạo khóa học, giao bài và dạy trực tiếp.</div></div>
+    <div class="s9-item r r-left" style="--d:1.3s"><b>2</b><div><strong>AI chỉ ra học sinh yếu ở đâu</strong>Ví dụ 67% lớp sai nguyên hàm từng phần, gợi ý buổi chữa đề riêng.</div></div>
+    <div class="s9-item r r-left" style="--d:1.8s"><b>3</b><div><strong>Ví doanh thu minh bạch</strong>Theo dõi thu nhập, rút tiền và chạy quảng cáo ngay trên nền tảng.</div></div>
+  </div>
+  <div class="frame r r-right" style="left:850px;top:200px;width:970px;--d:.6s">
+    <div class="bar"><i></i><i></i><i></i><span>https://luyenthicaptoc.vn/giao-vien/dashboard</span></div>
+    <div class="vp"><img src="assets/shot_09_teacher_dashboard.jpg" alt="Tổng quan giáo viên với AI Teaching Assistant" /><div class="spot soft on" style="left:21.4%;top:47%;width:47.2%;height:35.6%"></div></div>
+  </div>
+</section>
+
+<!-- ================= 10. DOANH THU ================= -->
+<section class="slide" data-steps="2" data-time="60" data-note="Học sinh không trả tiền làm đề. Tiền đến khi học sinh mua khóa của giáo viên, giáo viên nhận 80 phần trăm, LTCT thu 20 phần trăm. Bấm tiếp để xem ví dụ cụ thể, rồi các nguồn thu phụ: quảng cáo, xu và combo sách với trợ lý AI.">
+  <span class="eyebrow r">Nguồn doanh thu</span>
+  <h2 class="h2 r" style="--d:.15s;max-width:1650px;font-size:50px;white-space:nowrap">Học sinh không trả tiền làm đề. Tiền đến từ <span class="b">hệ sinh thái giáo viên</span>.</h2>
+  <div id="flow" class="r" style="--d:.6s">
+    <svg viewBox="0 0 1020 520"><g fill="none" stroke="#b9dcf2" stroke-width="5" stroke-dasharray="3 14" stroke-linecap="round">
+      <path d="M215 270 L365 270"/><path d="M665 270 C730 270,730 115,775 115"/><path d="M665 270 C730 270,730 425,775 425"/></g></svg>
+    <div class="fn stu"><img src="assets/cut-doc-sach.png" alt=""/><strong>Học sinh</strong><span>Làm đề miễn phí</span></div>
+    <div class="fn mk"><strong>Mua khóa học</strong><span>lớp bổ trợ & kèm cặp của giáo viên</span></div>
+    <div class="fn tc"><strong>80%</strong><em>Giáo viên nhận</em></div>
+    <div class="fn lt"><strong>20%</strong><em>LTCT thu hoa hồng</em></div>
+    <i class="coin" style="offset-path:path('M215 270 L365 270');animation-delay:0s"></i>
+    <i class="coin" style="offset-path:path('M215 270 L365 270');animation-delay:1.3s"></i>
+    <i class="coin" style="offset-path:path('M665 270 C730 270,730 115,775 115');animation-delay:.9s"></i>
+    <i class="coin" style="offset-path:path('M665 270 C730 270,730 115,775 115');animation-delay:2.2s"></i>
+    <i class="coin" style="offset-path:path('M665 270 C730 270,730 425,775 425');animation-delay:1.1s"></i>
+    <i class="coin" style="offset-path:path('M665 270 C730 270,730 425,775 425');animation-delay:2.4s"></i>
+  </div>
+  <div class="example step" data-step="1">
+    <div class="q">Ví dụ một học sinh mua Khóa Toán 8+</div>
+    <div class="v"><b style="color:var(--ink)"><span data-manual data-to="199000" data-suffix="đ">0</span></b><span>Học sinh trả</span></div>
+    <div class="arrow">→</div>
+    <div class="v"><b style="color:var(--green-d)"><span data-manual data-to="159200" data-suffix="đ">0</span></b><span>Giáo viên nhận</span></div>
+    <div class="v"><b style="color:#d97706"><span data-manual data-to="39800" data-suffix="đ">0</span></b><span>LTCT nhận</span></div>
+  </div>
+  <div class="s10-cards">
+    <div class="rcard main r r-right" style="--d:.9s"><i>01</i><div><strong>Hoa hồng khóa học</strong><span>20% trên mỗi khóa học và lớp bổ trợ chuyên sâu của giáo viên bán ra. Đây là nguồn thu chính.</span></div></div>
+    <div class="rcard step" data-step="2"><i style="background:var(--orange)">02</i><div><strong>Quảng cáo cho giáo viên</strong><span>Banner trang chủ 500.000đ, ưu tiên hiển thị cùng môn 200.000đ, mỗi gói 30 ngày.</span></div></div>
+    <div class="rcard step" data-step="2"><i style="background:var(--green)">03</i><div><strong>Học sinh nạp xu</strong><span>Gói 100.000đ nhận 115 xu để đăng ký khóa học hoặc mở rộng lượt hỏi AI Cụt. (Đề thi 100% miễn phí).</span></div></div>
+    <div class="rcard step" data-step="2"><i style="background:var(--purple)">04</i><div><strong>Combo sách và trợ lý AI</strong><span>Mở rộng hỏi đáp Cụt không giới hạn, bản miễn phí có 5 câu mỗi ngày.</span></div></div>
+    <div class="later-tag step" data-step="2">Giai đoạn sau: hợp tác tuyển sinh với các trường</div>
+  </div>
+</section>
+
+<!-- ================= 11. THỰC CHỨNG & TĂNG TRƯỞNG ================= -->
+<section class="slide" data-time="35" data-note="Nhấn mạnh: Nền tảng đang trong giai đoạn thử nghiệm thực tế (pilot) và đã được đón nhận vượt ngoài mong đợi: 10.000+ Users đang học mỗi ngày, 100+ Thầy cô toàn quốc đồng hành mở lớp và liên kết hợp tác cùng 6 Trường Đại học lớn (ĐHQG Hà Nội, ĐHQG TP.HCM, Bách Khoa, NEU, HNUE, UEH). Cần vốn 500Tr để bứt phá quy mô và nâng cấp hạ tầng AI.">
+  <span class="eyebrow r">Giai đoạn thử nghiệm thị trường</span>
+  <h2 class="h2 r" style="--d:.15s;max-width:1650px;font-size:52px">Giai đoạn thử nghiệm <span class="b">được đón nhận vượt ngoài mong đợi</span>.</h2>
+  
+  <!-- 3 Thẻ số liệu Traction -->
+  <div class="s11-traction">
+    <div class="tr-card r r-left" style="--d:.5s">
+      <div class="tr-num">10.000+</div>
+      <div><strong>Học sinh (Users)</strong><span>Đang luyện đề & chữa lỗi sai hàng ngày</span></div>
+    </div>
+    <div class="tr-card r r-left" style="--d:.7s">
+      <div class="tr-num">100+</div>
+      <div><strong>Giáo viên toàn quốc</strong><span>Đồng hành mở lớp, kiểm định ngân hàng đề</span></div>
+    </div>
+    <div class="tr-card r r-left" style="--d:.9s">
+      <div class="tr-num">12.000+</div>
+      <div><strong>Câu hỏi chuẩn hóa</strong><span>Bám sát chuẩn đề thi máy tính Bộ GD&ĐT</span></div>
+    </div>
+  </div>
+
+  <!-- Khối Hợp tác các Trường Đại học lớn -->
+  <div class="s11-partners r r-fade" style="--d:1.1s">
+    <div class="part-head">
+      <div class="ph-title"><i></i>Mạng lưới liên kết & Hợp tác khảo sát cùng các Trường Đại học lớn</div>
+      <div class="ph-note">Phối hợp đề thi ĐGNL & Hướng nghiệp tuyển sinh số</div>
+    </div>
+    <div class="uni-grid">
+      <div class="uni-card">
+        <div class="uni-badge">VNU</div>
+        <strong>ĐHQG Hà Nội</strong>
+        <span>Khảo sát đề ĐGNL HSA</span>
+      </div>
+      <div class="uni-card">
+        <div class="uni-badge">HCM</div>
+        <strong>ĐHQG TP.HCM</strong>
+        <span>Dữ liệu đánh giá năng lực</span>
+      </div>
+      <div class="uni-card">
+        <div class="uni-badge">HUST</div>
+        <strong>ĐH Bách Khoa</strong>
+        <span>Chuẩn hóa tư duy logic & Toán</span>
+      </div>
+      <div class="uni-card">
+        <div class="uni-badge">NEU</div>
+        <strong>ĐH Kinh Tế QD</strong>
+        <span>Tư vấn khối thi & Tuyển sinh</span>
+      </div>
+      <div class="uni-card">
+        <div class="uni-badge">HNUE</div>
+        <strong>ĐH Sư Phạm HN</strong>
+        <span>Mạng lưới cố vấn sư phạm</span>
+      </div>
+      <div class="uni-card">
+        <div class="uni-badge">UEH</div>
+        <strong>ĐH Kinh Tế TP.HCM</strong>
+        <span>Đồng hành hướng nghiệp số</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 Màn hình sản phẩm thực tế đang chạy -->
+  <div class="strip">
+    <div class="r" style="--d:1.3s"><img src="assets/shot_01_analysis.jpg" alt=""/><span>Chẩn đoán năng lực thật</span></div>
+    <div class="r" style="--d:1.5s"><img src="assets/shot_05_result.jpg" alt=""/><span>Kết quả bài thi số hóa</span></div>
+    <div class="r" style="--d:1.7s"><img src="assets/shot_08_teacher_revenue.jpg" alt=""/><span>Ví thu nhập giáo viên</span></div>
+    <div class="r" style="--d:1.9s"><img src="assets/shot_10_teacher_marketing.jpg" alt=""/><span>Quảng cáo lớp học thật</span></div>
+  </div>
+</section>
+
+<!-- ================= 12. GỌI VỐN ================= -->
+<section class="slide dark" data-time="35" data-note="Kêu gọi 500 triệu cho 10% cổ phần công ty từ Founder Vy Thiện Hùng. 4 mục tiêu sử dụng vốn: Hạ tầng & AI Cụt 3D 35%, Marketing 25%, Bồi dưỡng thầy cô 25%, Sự kiện thi thử 15%. Kết thúc xúc động: không để bất kỳ đứa em nào phải ôm xấp đề ướt nhòe vì nhà dột trong đêm mưa, và người thầy như Dì tôi tỏa sáng lan tỏa tri thức muôn nơi.">
+  <div class="glow r r-fade" style="left:1100px;top:380px;width:760px;height:760px;--d:.2s"></div>
+  <div class="s12-left">
+    <span class="eyebrow r">Lời kêu gọi</span>
+    <h2 class="s12-h r" style="--d:.2s">Chúng tôi gọi <span class="grad">500 triệu</span> cho <span class="grad">10% cổ phần</span></h2>
+    <p class="lead r" style="--d:.5s;margin-top:16px;font-size:26px;max-width:1100px">Định giá 5 tỷ VNĐ. Tối đa 3 nhà đầu tư. Ưu tiên angel & đối tác chiến lược có mạng lưới giáo dục, trường học hoặc nguồn lực AI.</p>
+    <div class="fund r" style="--d:.8s">
+      <div class="donut">
+        <svg width="290" height="290" viewBox="0 0 290 290"><g id="donutg">
+          <circle cx="145" cy="145" r="112" stroke="rgba(255,255,255,.1)" stroke-dasharray="703.7 0"/>
+          <circle class="seg" data-len="246.3" data-off="0" cx="145" cy="145" r="112" stroke="#a560e8" stroke-dasharray="0 703.7"/>
+          <circle class="seg" data-len="175.9" data-off="-246.3" cx="145" cy="145" r="112" stroke="#1cb0f6" stroke-dasharray="0 703.7"/>
+          <circle class="seg" data-len="175.9" data-off="-422.2" cx="145" cy="145" r="112" stroke="#58cc02" stroke-dasharray="0 703.7"/>
+          <circle class="seg" data-len="105.6" data-off="-598.1" cx="145" cy="145" r="112" stroke="#ff9600" stroke-dasharray="0 703.7"/></g></svg>
+        <div class="c"><span style="font-size:32px;font-weight:900;color:#fff">500Tr</span><span style="font-size:18px;font-weight:800;color:#9fdcff;margin-top:4px">10% Cổ phần</span></div>
+      </div>
+      <div class="legend">
+        <div><i style="background:#a560e8"></i><b>35%</b><span><strong>Đầu tư hạ tầng sản phẩm & Trọng tâm AI</strong> (175tr: Server GPU, gia sư AI Cụt 24/7, chẩn đoán điểm mù)</span></div>
+        <div><i style="background:#1cb0f6"></i><b>25%</b><span><strong>Marketing & Tăng trưởng học sinh</strong> (125tr: Phủ sóng sĩ tử toàn quốc, lan tỏa phễu 0đ)</span></div>
+        <div><i style="background:#58cc02"></i><b>25%</b><span><strong>Bồi dưỡng thầy cô & Ngân hàng đề chuẩn</strong> (125tr: Đãi ngộ chuyên gia, biên soạn lời giải chi tiết)</span></div>
+        <div><i style="background:#ff9600"></i><b>15%</b><span><strong>Tổ chức sự kiện & Thi thử liên trường</strong> (75tr: Chuỗi sự kiện thi thử cấp tốc, workshop phòng thi)</span></div>
+      </div>
+    </div>
+    <div class="team r" style="--d:1.2s">
+      <div style="background:rgba(255,255,255,.14);border:1.5px solid rgba(56,189,248,.4);border-radius:24px;padding:16px 36px;display:flex;align-items:center;gap:20px;box-shadow:0 12px 30px rgba(0,0,0,.3)">
+        <div style="width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#0284c7,#38bdf8);display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:900;box-shadow:0 4px 14px rgba(2,132,199,.4)">V</div>
+        <div>
+          <strong style="font-size:30px;color:#fff;display:block;line-height:1.2">Vy Thiện Hùng</strong>
+          <span style="font-size:20px;color:#bfe9ff;font-weight:700">Founder & CEO · Định hướng Chiến lược & Mạng lưới Đối tác Giáo dục</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <img class="cut r r-pop" style="right:150px;top:70px;width:520px;--d:1s;animation-name:pop,floaty;animation-duration:.9s,6s;animation-delay:1s,2s;animation-iteration-count:1,infinite;animation-fill-mode:both,none" src="assets/cut-dat-giai.png" alt="Cụt đạt giải" />
+  <p class="close-line r" style="--d:1.6s">Để không có em học sinh nào <span class="grad">bị bỏ lại phía sau.</span></p>
+  <div class="cta r" style="--d:2s;animation-name:pop;animation-duration:.8s">Đồng hành cùng luyenthicaptoc.vn</div>
+</section>
+
+</div></div>
+
+<div id="hud-brand"><span class="dot"></span>luyenthicaptoc.vn</div>
+<div id="progress"><i></i></div>
+<div id="dots"></div>
+<div id="counter">1 / 12</div>
+<div id="hint">← → hoặc Space để chuyển · F toàn màn hình · N ghi chú · T đồng hồ 7 phút</div>
+<div id="timer"><b>7:00</b><span id="tlabel">T ẩn · R đặt lại</span></div>
+<div id="notes"></div>
+<button id="fs" title="Toàn màn hình (F)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:auto"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg></button>
+
+<script>
+(function(){
+  var stage=document.getElementById('stage');
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var cur=0, step=0, timers=[];
+  var later=function(fn,ms){timers.push(setTimeout(fn,ms))};
+  var clearTimers=function(){timers.forEach(clearTimeout);timers=[]};
+
+  /* scale 1920x1080 stage to viewport */
+  function fit(){
+    var s=Math.min(innerWidth/1920,innerHeight/1080);
+    stage.style.transform='translate(-50%,-50%) scale('+s+')';
+  }
+  addEventListener('resize',fit);fit();
+
+  /* starfield */
+  (function(){var h='';for(var i=0;i<70;i++){h+='<i style="left:'+(Math.random()*100)+'%;top:'+(Math.random()*100)+'%;animation-delay:'+(Math.random()*3)+'s;opacity:'+(.2+Math.random()*.6)+';width:'+(2+Math.random()*4)+'px;height:'+(2+Math.random()*4)+'px"></i>'}
+    document.getElementById('stars').innerHTML=h;})();
+
+  /* loop diagram (slide 4) */
+  (function(){
+    var box=document.getElementById('loop'),R=290,C=380,labels=[['1','Chẩn đoán'],['2','Luyện đề'],['3','Sổ lỗi sai'],['4','Hỏi Cụt'],['5','Lớp giáo viên']],
+        colors=['#1cb0f6','#58cc02','#ff9600','#a560e8','#1697d5'],h='';
+    h+='<svg viewBox="0 0 760 760"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1cb0f6"/><stop offset="1" stop-color="#58cc02"/></linearGradient></defs><circle cx="380" cy="380" r="290" fill="none" stroke="url(#lg)" stroke-width="10" stroke-linecap="round" stroke-dasharray="1822" class="loopring"/></svg>';
+    h+='<img class="center cut r r-pop" style="--d:.6s;animation-name:pop,floaty;animation-duration:.9s,6s;animation-delay:.6s,1.5s;animation-iteration-count:1,infinite;animation-fill-mode:both,none" src="assets/cut-like.png" alt="Cụt" />';
+    labels.forEach(function(l,k){
+      var a=(-90+72*k)*Math.PI/180,x=C+R*Math.cos(a)-88,y=C+R*Math.sin(a)-88;
+      h+='<div class="node r r-pop" style="left:'+x+'px;top:'+y+'px;background:'+colors[k]+';--d:'+(.8+k*.45)+'s"><small>'+l[0]+'</small>'+l[1]+'</div>';
+    });
+    box.innerHTML=h;
+  })();
+  var style=document.createElement('style');
+  style.textContent='.slide.active .loopring{animation:draw 3s ease-out .8s both}';
+  document.head.appendChild(style);
+
+  /* helpers */
+  function ease(t){return 1-Math.pow(1-t,3)}
+  function countUp(el,ms){
+    var to=parseFloat(el.dataset.to),suf=el.dataset.suffix||'',t0=null;
+    if(document.body.classList.contains('still')){el.textContent=to.toLocaleString('vi-VN')+suf;return}
+    t0=Date.now();(function f(){var p=Math.min(1,(Date.now()-t0)/(ms||1400));el.textContent=Math.round(to*ease(p)).toLocaleString('vi-VN')+suf;if(p<1)timers.push(setTimeout(f,32))})();
+  }
+  function setSpot(el,r){el.style.left=r[0]+'%';el.style.top=r[1]+'%';el.style.width=r[2]+'%';el.style.height=r[3]+'%'}
+
+  /* slide-specific enter hooks */
+  var enter={};
+  enter[5]=function(el){ /* slide 6 */
+    var fg=el.querySelector('#ringfg');fg.style.transition='none';fg.style.strokeDashoffset='659.7';
+    var bars=el.querySelectorAll('.bar2 i');bars.forEach(function(b){b.style.transition='none';b.style.width='0'});
+    void fg.getBoundingClientRect();
+    later(function(){fg.style.transition='stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1)';fg.style.strokeDashoffset=(659.7*(1-.76)).toFixed(1)},900);
+    bars.forEach(function(b,k){later(function(){b.style.transition='width 1.3s cubic-bezier(.2,.8,.2,1)';b.style.width=b.dataset.w+'%'},1300+k*250)});
+    var n=el.querySelector('[data-count]');n.textContent='0';later(function(){countUp(n,1600)},900);
+  };
+  enter[11]=function(el){ /* slide 12 donut */
+    var segs=el.querySelectorAll('.seg');
+    segs.forEach(function(s){s.style.transition='none';s.setAttribute('stroke-dasharray','0 703.7');s.setAttribute('stroke-dashoffset',s.dataset.off)});
+    void el.offsetWidth;
+    later(function(){segs.forEach(function(s,k){s.style.transition='stroke-dasharray 1.4s cubic-bezier(.2,.8,.2,1) '+(k*.5)+'s';s.setAttribute('stroke-dasharray',s.dataset.len+' 703.7')})},1300);
+  };
+
+  /* slide-specific step hooks: (slideIndex) -> fn(step, instant) */
+  var poses=['cut-no-luc','cut-no-luc','cut-thac-mac','cut-tuc-gian','cut-buon-ngu','cut-doc-sach','cut-yeu-thich'];
+  var bubbles=['Mình sẽ cố gắng.','Mình phải đạt 8,0!','In cả đống đề mà muốn làm lại không được...','1-2h đêm, hỏi ChatGPT mai lại quên sạch...','Gia đình khó khăn, lấy đâu tiền học thêm...','Dì tôi dạy rất giỏi nhưng khó tiếp cận học sinh cả nước...','Nam cần luyenthicaptoc.vn lưu vết lỗi sai!'];
+  var spots7=[null,[20.4,68.8,24.8,7.4],[44.2,62.1,24.8,7.4],[20.4,76.8,24.9,13.4],[44.3,76.8,24.9,13.4]];
+  var stepFn={};
+  stepFn[1]=function(s){
+    var img=document.getElementById('s2cut');img.src='assets/'+poses[s]+'.png';
+    var b=document.getElementById('s2bubble');b.style.opacity=0;setTimeout(function(){b.textContent=bubbles[s];b.style.opacity=1},220);
+    document.getElementById('s2grid').classList.toggle('dim',s>=6);
+  };
+  stepFn[6]=function(s){
+    var sp=document.getElementById('s7spot');
+    if(s>=1&&spots7[s]){setSpot(sp,spots7[s]);sp.classList.add('on')}else{sp.classList.remove('on')}
+    [].forEach.call(document.querySelectorAll('#s7list .s7-item'),function(it){it.classList.toggle('on',+it.dataset.step===s)});
+  };
+  stepFn[7]=function(s,instant){
+    var msgs=document.querySelectorAll('#msgs .msg.bot');
+    [].forEach.call(msgs,function(m){
+      var k=+m.dataset.typed,t=m.querySelector('.t'),full=t.dataset.full;
+      if(k<s||instant&&k<=s){t.textContent=full;t.dataset.state='done'}
+      else if(k>s){t.textContent='';t.dataset.state=''}
+      else if(k===s&&t.dataset.state!=='done'){
+        t.dataset.state='typing';t.innerHTML='<span class="dots"><i></i><i></i><i></i></span>';
+        later(function(){
+          var i=0;t.textContent='';
+          (function type(){ if(t.dataset.state!=='typing')return; i+=2;t.textContent=full.slice(0,i);
+            if(i<full.length)timers.push(setTimeout(type,28));else t.dataset.state='done'; })();
+        },1100);
+      }
+    });
+  };
+  stepFn[9]=function(s,instant){
+    if(s>=1){var ex=document.querySelectorAll('.example [data-manual]');
+      ex.forEach(function(e){if(instant){e.textContent=(+e.dataset.to).toLocaleString('vi-VN')+(e.dataset.suffix||'')}else{later(function(){countUp(e,1400)},500)}})}
+    else{document.querySelectorAll('.example [data-manual]').forEach(function(e){e.textContent='0'})}
+  };
+
+  function applySteps(instant){
+    var el=slides[cur];
+    [].forEach.call(el.querySelectorAll('[data-step]'),function(n){n.classList.toggle('show',+n.dataset.step<=step)});
+    if(stepFn[cur])stepFn[cur](step,instant);
+  }
+
+  var hud={prog:document.querySelector('#progress i'),counter:document.getElementById('counter'),dots:document.getElementById('dots'),notes:document.getElementById('notes'),hint:document.getElementById('hint')};
+  hud.dots.innerHTML=slides.map(function(_,i){return '<i data-i="'+i+'"></i>'}).join('');
+  hud.dots.addEventListener('click',function(e){var i=e.target.dataset.i;if(i!=null){e.stopPropagation();go(+i,0,+i>=cur?1:-1)}});
+
+  function updateHud(){
+    hud.prog.style.width=((cur+1)/slides.length*100)+'%';
+    hud.counter.textContent=(cur+1)+' / '+slides.length;
+    [].forEach.call(hud.dots.children,function(d,i){d.classList.toggle('on',i===cur)});
+    var t=+slides[cur].dataset.time||0,m=Math.floor(t/60),s=('0'+(t%60)).slice(-2);
+    hud.notes.innerHTML='<small>Slide '+(cur+1)+' · khoảng '+m+':'+s+'</small>'+(slides[cur].dataset.note||'');
+  }
+
+  /* Auto-stepping config: animation tự động chạy tuần tự khi vào slide */
+  var autoStepDelays = {
+    1: [700, 2100, 3500, 4900, 6300, 7700], // Slide 2: 6 thẻ câu chuyện học sinh & Cụt đổi pose
+    6: [500, 2000, 3500, 5000],             // Slide 7: 4 bước Sổ lỗi sai + spotlight di chuyển
+    7: [500, 3800, 7200],                   // Slide 8: 3 lượt chat Cụt 3D gõ tin nhắn
+    9: [800, 2600]                          // Slide 10: hiện ví dụ 199k countUp rồi hiện các gói thu
+  };
+
+  function startAutoSteps(slideIdx){
+    var total = maxSteps(slideIdx);
+    if(total <= 0) return;
+    var delays = autoStepDelays[slideIdx];
+    if(!delays){
+      delays = [];
+      for(var k = 0; k < total; k++) delays.push((k + 1) * 1500);
+    }
+    delays.forEach(function(d, idx){
+      var targetStep = idx + 1;
+      later(function(){
+        if(cur === slideIdx){
+          step = targetStep;
+          applySteps(false);
+          // Kết thúc Slide 7: sau bước 4, spotlight tắt nhẹ để hiện toàn bộ màn hình sổ lỗi sai rõ nét
+          if(slideIdx === 6 && targetStep === 4){
+            later(function(){
+              if(cur === 6){
+                var sp = document.getElementById('s7spot');
+                if(sp) sp.classList.remove('on');
+                [].forEach.call(document.querySelectorAll('#s7list .s7-item'),function(it){it.classList.add('on')});
+              }
+            }, 2500);
+          }
+        }
+      }, d);
+    });
+  }
+
+  function go(i,s,dir){
+    i=Math.max(0,Math.min(slides.length-1,i));
+    clearTimers();
+    slides[cur].classList.remove('active');
+    cur=i;step=s||0;
+    var el=slides[cur];
+    el.classList.add('active');
+    [].forEach.call(el.querySelectorAll('[data-count]'),function(n){n.textContent='0'});
+    [].forEach.call(el.querySelectorAll('[data-step]'),function(n){n.classList.remove('show')});
+    if(stepFn[cur]&&step===0)stepFn[cur](0,true);
+    applySteps(!!step);
+    if(enter[cur])enter[cur](el);
+    [].forEach.call(el.querySelectorAll('[data-count]:not([data-manual])'),function(n){if(!enter[cur])countUp(n)});
+    updateHud();
+    try{history.replaceState(null,'','#'+(cur+1))}catch(e){}
+
+    if(step===0 && maxSteps(cur)>0){
+      startAutoSteps(cur);
+    }
+  }
+  function maxSteps(i){return +slides[i].dataset.steps||0}
+  function next(){ if(cur<slides.length-1){go(cur+1,0,1)} }
+  function prev(){ if(cur>0){go(cur-1,0,-1)} }
+
+  /* keyboard */
+  addEventListener('keydown',function(e){
+    var k=e.key;
+    if(k==='ArrowRight'||k==='PageDown'||k===' '||k==='Enter'){e.preventDefault();next()}
+    else if(k==='ArrowLeft'||k==='PageUp'||k==='Backspace'){e.preventDefault();prev()}
+    else if(k==='Home'){go(0,0,-1)}
+    else if(k==='End'){go(slides.length-1,0,1)}
+    else if(k==='f'||k==='F'){toggleFs()}
+    else if(k==='n'||k==='N'){hud.notes.style.display=hud.notes.style.display==='block'?'none':'block'}
+    else if(k==='t'||k==='T'){toggleTimer()}
+    else if(k==='r'||k==='R'){resetTimer()}
+    hud.hint.style.opacity=0;
+  });
+  /* click: left 20% = back, else next */
+  addEventListener('click',function(e){
+    if(e.target.closest('#fs,#dots,#timer,#notes,.s8-frame,a,button,input,.vbtn,.m-pill'))return;
+    if(e.clientX<innerWidth*.2)prev();else next();
+  });
+  /* swipe */
+  var tx=null;
+  addEventListener('touchstart',function(e){tx=e.touches[0].clientX},{passive:true});
+  addEventListener('touchend',function(e){if(tx==null)return;var dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50){dx<0?next():prev()}tx=null});
+
+  /* fullscreen */
+  function toggleFs(){var d=document;if(!d.fullscreenElement){(d.documentElement.requestFullscreen||function(){}).call(d.documentElement)}else{d.exitFullscreen()}}
+  document.getElementById('fs').addEventListener('click',function(e){e.stopPropagation();toggleFs()});
+
+  /* timer 7:00 */
+  var tbox=document.getElementById('timer'),tnum=tbox.querySelector('b'),total=420,left=total,ti=null;
+  function drawTimer(){
+    var a=Math.abs(left),m=Math.floor(a/60),s=('0'+(a%60)).slice(-2);
+    tnum.textContent=(left<0?'-':'')+m+':'+s;
+    tbox.classList.toggle('warn',left<=60&&left>0);tbox.classList.toggle('over',left<=0);
+  }
+  function toggleTimer(){
+    if(tbox.style.display==='block'){tbox.style.display='none';clearInterval(ti);ti=null}
+    else{tbox.style.display='block';drawTimer();ti=setInterval(function(){left--;drawTimer()},1000)}
+  }
+  function resetTimer(){left=total;drawTimer()}
+
+  setTimeout(function(){hud.hint.style.opacity=0},7000);
+
+  function parseHash(){var m=(location.hash||'#1').match(/#(\d+)(?:\.(\d+))?/);return m?[parseInt(m[1],10)||1,parseInt(m[2]||'0',10)]:[1,0]}
+  var start=parseHash();
+  if(/[?&]still/.test(location.search)){setTimeout(function(){[].forEach.call(document.querySelectorAll('[data-count]'),function(n){n.textContent=n.dataset.to});},300)}
+  if(/[?&]still/.test(location.search)){document.body.classList.add('still')}
+  addEventListener('hashchange',function(){var h=parseHash();go(h[0]-1,Math.min(h[1],maxSteps(Math.max(0,Math.min(slides.length-1,h[0]-1)))),h[0]-1>=cur?1:-1)});
+  go(start[0]-1,Math.min(start[1],maxSteps(Math.max(0,Math.min(slides.length-1,start[0]-1)))),1);
+})();
+
+  /* ---------- 3D Math Engine for Slide 8 (Pure HTML5 Canvas) ---------- */
+  (function(){
+    var cv = document.getElementById('math3d');
+    if(!cv) return;
+    var ctx = cv.getContext('2d');
+    var mode = 'saddle';
+    var a = 0.5, b = 0.5;
+    var pitch = 0.55, yaw = 0.85;
+    var isSpinning = true;
+    var zoom = 1.0;
+    var isDragging = false, lastX = 0, lastY = 0;
+
+    var sliderA = document.getElementById('sliderA');
+    var sliderB = document.getElementById('sliderB');
+    var valA = document.getElementById('valA');
+    var valB = document.getElementById('valB');
+    var eqBadge = document.getElementById('eqBadge');
+    var vizTitle = document.getElementById('vizTitle');
+    var vizDesc = document.getElementById('vizDesc');
+    var lblParamA = document.getElementById('lblParamA');
+    var lblParamB = document.getElementById('lblParamB');
+    var btnModeSaddle = document.getElementById('btnModeSaddle');
+    var btnModeCone = document.getElementById('btnModeCone');
+    var btnToggleSpin = document.getElementById('btnToggleSpin');
+    var btnResetView = document.getElementById('btnResetView');
+
+    function updateEq(){
+      if(mode === 'saddle'){
+        if(eqBadge) eqBadge.innerHTML = 'z = ' + a.toFixed(2) + 'x² - ' + b.toFixed(2) + 'y²';
+      } else {
+        if(eqBadge) eqBadge.innerHTML = 'Khối nón: x² + y² = z² &bull; Thiết diện z = ' + b.toFixed(2);
+      }
+    }
+
+    if(sliderA){
+      sliderA.addEventListener('input', function(){
+        a = parseFloat(this.value);
+        if(valA) valA.textContent = a.toFixed(2);
+        updateEq();
+      });
+    }
+    if(sliderB){
+      sliderB.addEventListener('input', function(){
+        b = parseFloat(this.value);
+        if(valB) valB.textContent = b.toFixed(2);
+        updateEq();
+      });
+    }
+
+    if(btnModeSaddle){
+      btnModeSaddle.addEventListener('click', function(e){
+        e.stopPropagation();
+        mode = 'saddle';
+        btnModeSaddle.classList.add('active');
+        btnModeCone.classList.remove('active');
+        if(vizTitle) vizTitle.textContent = 'Mặt cong Hyperbolic Paraboloid';
+        if(vizDesc) vizDesc.innerHTML = 'Bề mặt yên ngựa 3D tương tác theo phương trình <i>z = ax² - by²</i>';
+        if(lblParamA) lblParamA.innerHTML = 'Hệ số <b>a</b> (độ dốc trục x):';
+        if(lblParamB) lblParamB.innerHTML = 'Hệ số <b>b</b> (độ dốc trục y):';
+        sliderA.value = a = 0.5; if(valA) valA.textContent = '0.50';
+        sliderB.value = b = 0.5; if(valB) valB.textContent = '0.50';
+        updateEq();
+      });
+    }
+
+    if(btnModeCone){
+      btnModeCone.addEventListener('click', function(e){
+        e.stopPropagation();
+        mode = 'cone';
+        btnModeCone.classList.add('active');
+        btnModeSaddle.classList.remove('active');
+        if(vizTitle) vizTitle.textContent = 'Hình Nón Tròn Xoay & Thiết Diện Cắt Ngang';
+        if(vizDesc) vizDesc.innerHTML = 'Mặt nón đỉnh O cắt bởi mặt phẳng song song với đáy <i>z = h</i> tạo đường tròn';
+        if(lblParamA) lblParamA.innerHTML = 'Bán kính nón <b>R</b>:';
+        if(lblParamB) lblParamB.innerHTML = 'Cao độ thiết diện <b>h</b>:';
+        sliderA.value = a = 0.7; if(valA) valA.textContent = '0.70';
+        sliderB.value = b = 0.5; if(valB) valB.textContent = '0.50';
+        updateEq();
+      });
+    }
+
+    if(btnToggleSpin){
+      btnToggleSpin.addEventListener('click', function(e){
+        e.stopPropagation();
+        isSpinning = !isSpinning;
+        btnToggleSpin.textContent = isSpinning ? '⏸ Tạm dừng xoay' : '▶ Tiếp tục xoay';
+      });
+    }
+
+    if(btnResetView){
+      btnResetView.addEventListener('click', function(e){
+        e.stopPropagation();
+        pitch = 0.55; yaw = 0.85; zoom = 1.0;
+      });
+    }
+
+    cv.addEventListener('mousedown', function(e){
+      isDragging = true;
+      lastX = e.clientX;
+      lastY = e.clientY;
+    });
+    window.addEventListener('mouseup', function(){ isDragging = false; });
+    window.addEventListener('mousemove', function(e){
+      if(!isDragging) return;
+      var dx = e.clientX - lastX;
+      var dy = e.clientY - lastY;
+      yaw += dx * 0.009;
+      pitch += dy * 0.009;
+      pitch = Math.max(-1.3, Math.min(1.3, pitch));
+      lastX = e.clientX;
+      lastY = e.clientY;
+    });
+
+    function project(x, y, z, W, H){
+      var cosY = Math.cos(yaw), sinY = Math.sin(yaw);
+      var cosP = Math.cos(pitch), sinP = Math.sin(pitch);
+      var x1 = x * cosY - y * sinY;
+      var y1 = x * sinY + y * cosY;
+      var z1 = z;
+      var y2 = y1 * cosP - z1 * sinP;
+      var z2 = y1 * sinP + z1 * cosP;
+      var fov = 750;
+      var scale = (fov / (fov + y2 + 320)) * zoom;
+      return {
+        x: W * 0.5 + x1 * scale,
+        y: H * 0.54 - z2 * scale,
+        depth: y2,
+        zRaw: z
+      };
+    }
+
+    function render(){
+      var W = cv.width, H = cv.height;
+      ctx.clearRect(0, 0, W, H);
+
+      var bg = ctx.createLinearGradient(0, 0, 0, H);
+      bg.addColorStop(0, '#091122');
+      bg.addColorStop(1, '#050914');
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, W, H);
+
+      var glow = ctx.createRadialGradient(W*0.5, H*0.54, 20, W*0.5, H*0.54, 300);
+      glow.addColorStop(0, 'rgba(56,189,248,0.18)');
+      glow.addColorStop(0.5, 'rgba(168,85,247,0.08)');
+      glow.addColorStop(1, 'transparent');
+      ctx.fillStyle = glow;
+      ctx.fillRect(0, 0, W, H);
+
+      if(isSpinning && !isDragging){
+        yaw += 0.004;
+      }
+
+      if(mode === 'saddle'){
+        renderSaddle(W, H);
+      } else {
+        renderCone(W, H);
+      }
+
+      requestAnimationFrame(render);
+    }
+
+    function renderSaddle(W, H){
+      var N = 20;
+      var range = 2.0;
+      var step = (range * 2) / N;
+      var grid = [];
+      var minZ = 999, maxZ = -999;
+
+      for(var i = 0; i <= N; i++){
+        grid[i] = [];
+        var u = -range + i * step;
+        for(var j = 0; j <= N; j++){
+          var v = -range + j * step;
+          var zVal = a * (u * u) - b * (v * v);
+          if(zVal < minZ) minZ = zVal;
+          if(zVal > maxZ) maxZ = zVal;
+          grid[i][j] = project(u * 76, v * 76, zVal * 42, W, H);
+        }
+      }
+
+      var zSpan = (maxZ - minZ) || 1;
+      var quads = [];
+      for(var i = 0; i < N; i++){
+        for(var j = 0; j < N; j++){
+          var p0 = grid[i][j];
+          var p1 = grid[i+1][j];
+          var p2 = grid[i+1][j+1];
+          var p3 = grid[i][j+1];
+          var avgDepth = (p0.depth + p1.depth + p2.depth + p3.depth) * 0.25;
+          var avgZ = (p0.zRaw + p1.zRaw + p2.zRaw + p3.zRaw) * 0.25;
+          quads.push({ p0:p0, p1:p1, p2:p2, p3:p3, depth:avgDepth, z:avgZ });
+        }
+      }
+      quads.sort(function(m1, m2){ return m2.depth - m1.depth; });
+
+      quads.forEach(function(q){
+        var t = Math.max(0, Math.min(1, (q.z - minZ) / zSpan));
+        var hue = (1 - t) * 240;
+        ctx.beginPath();
+        ctx.moveTo(q.p0.x, q.p0.y);
+        ctx.lineTo(q.p1.x, q.p1.y);
+        ctx.lineTo(q.p2.x, q.p2.y);
+        ctx.lineTo(q.p3.x, q.p3.y);
+        ctx.closePath();
+        ctx.fillStyle = 'hsla(' + hue + ', 95%, 48%, 0.44)';
+        ctx.fill();
+        ctx.strokeStyle = 'hsla(' + hue + ', 100%, 75%, 0.9)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      });
+    }
+
+    function renderCone(W, H){
+      var circles = 14;
+      var sectors = 28;
+      var maxR = a * 200;
+      var maxH = 190;
+
+      for(var c = 1; c <= circles; c++){
+        var r = (c / circles) * maxR;
+        var z = (c / circles) * maxH - (maxH * 0.5);
+        var isCut = Math.abs(c / circles - b) < 0.07;
+        ctx.beginPath();
+        for(var s = 0; s <= sectors; s++){
+          var ang = (s / sectors) * Math.PI * 2;
+          var x = r * Math.cos(ang);
+          var y = r * Math.sin(ang);
+          var p = project(x, y, z, W, H);
+          if(s === 0) ctx.moveTo(p.x, p.y);
+          else ctx.lineTo(p.x, p.y);
+        }
+        ctx.closePath();
+        if(isCut){
+          ctx.strokeStyle = '#00f0ff';
+          ctx.lineWidth = 3.5;
+          ctx.shadowColor = '#00f0ff';
+          ctx.shadowBlur = 14;
+          ctx.fillStyle = 'rgba(0, 240, 255, 0.32)';
+          ctx.fill();
+        } else {
+          ctx.strokeStyle = 'rgba(56, 189, 248, 0.4)';
+          ctx.lineWidth = 1;
+          ctx.shadowBlur = 0;
+        }
+        ctx.stroke();
+      }
+      ctx.shadowBlur = 0;
+
+      for(var s = 0; s < sectors; s += 2){
+        var ang = (s / sectors) * Math.PI * 2;
+        var pTop = project(maxR * Math.cos(ang), maxR * Math.sin(ang), maxH * 0.5, W, H);
+        var pTip = project(0, 0, -maxH * 0.5, W, H);
+        ctx.beginPath();
+        ctx.moveTo(pTip.x, pTip.y);
+        ctx.lineTo(pTop.x, pTop.y);
+        ctx.strokeStyle = 'rgba(168, 85, 247, 0.5)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    }
+
+    requestAnimationFrame(render);
+  })();
+
+</script>
+</body>
+</html>

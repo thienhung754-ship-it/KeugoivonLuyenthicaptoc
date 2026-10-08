@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đề Thi Thử Tốt Nghiệp THPT Năm 2026 — Môn Toán (Mã đề 101)</title>
+<style>
+  @page {
+    size: A4;
+    margin: 14mm 15mm 15mm 15mm;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #eef2f6;
+    font-family: 'Times New Roman', Times, serif;
+    color: #000;
+    line-height: 1.35;
+    font-size: 13pt;
+  }
+  
+  /* Top Toolbar for Screen */
+  .no-print-bar {
+    position: sticky;
+    top: 0;
+    background: #0f2b48;
+    color: #fff;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 999;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+  .bar-title {
+    font-weight: 700;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .badge-tag {
+    background: #2563eb;
+    color: #fff;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 800;
+  }
+  .btn-group {
+    display: flex;
+    gap: 10px;
+  }
+  .btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: none;
+    transition: all .15s;
+  }
+  .btn-print { background: #22c55e; color: #fff; }
+  .btn-print:hover { background: #16a34a; }
+  .btn-docx { background: #2563eb; color: #fff; }
+  .btn-docx:hover { background: #1d4ed8; }
+  .btn-ans { background: #f59e0b; color: #fff; }
+  .btn-ans:hover { background: #d97706; }
+  .btn-back { background: rgba(255,255,255,0.15); color: #fff; }
+  .btn-back:hover { background: rgba(255,255,255,0.25); }
+
+  /* Paper Container */
+  .paper-wrap {
+    max-width: 820px;
+    margin: 24px auto 60px;
+    background: #fff;
+    padding: 40px 48px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+
+  /* Header Exam Header */
+  .header-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 8px;
+  }
+  .header-table td {
+    vertical-align: top;
+    padding: 0 4px;
+  }
+  .header-left {
+    width: 50%;
+    text-align: center;
+    font-size: 12.5pt;
+  }
+  .header-left strong {
+    display: block;
+    font-size: 12pt;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  .header-left .sub {
+    font-size: 11pt;
+    font-style: italic;
+    margin-top: 2px;
+  }
+  .header-right {
+    width: 50%;
+    text-align: center;
+    font-size: 12pt;
+  }
+  .header-right strong {
+    display: block;
+    font-size: 13pt;
+    text-transform: uppercase;
+  }
+  .header-right .exam-title {
+    font-size: 13.5pt;
+    font-weight: bold;
+    margin-top: 2px;
+  }
+  .header-right .exam-time {
+    font-size: 11pt;
+    font-style: italic;
+  }
+  .exam-code {
+    display: inline-block;
+    border: 1.5px solid #000;
+    padding: 2px 14px;
+    font-weight: bold;
+    font-size: 12pt;
+    margin-top: 4px;
+  }
+
+  .divider-double {
+    border-top: 1.5px solid #000;
+    border-bottom: 0.8px solid #000;
+    height: 3px;
+    margin: 6px 0 12px;
+  }
+
+  /* Student Info Box */
+  .student-box {
+    margin-bottom: 16px;
+    font-size: 12pt;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed #777;
+    padding-bottom: 6px;
+  }
+  .student-box span {
+    border-bottom: 1px dotted #000;
+    display: inline-block;
+    min-width: 180px;
+  }
+
+  /* Part Header */
+  .part-title {
+    font-size: 13pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 18px 0 6px;
+    background: #f1f5f9;
+    padding: 4px 8px;
+    border-left: 4px solid #000;
+  }
+  .part-desc {
+    font-size: 11.5pt;
+    font-style: italic;
+    margin-bottom: 12px;
+  }
+
+  /* Question items */
+  .q-item {
+    margin-bottom: 14px;
+    text-align: justify;
+    page-break-inside: avoid;
+  }
+  .q-num {
+    font-weight: bold;
+  }
+  .q-options {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 4px;
+    padding-left: 14px;
+  }
+  .q-options.two-cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .opt {
+    font-weight: normal;
+  }
+  .opt strong {
+    font-weight: bold;
+    margin-right: 4px;
+  }
+
+  /* True/False Sub-questions Table */
+  .tf-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 6px;
+  }
+  .tf-table th, .tf-table td {
+    border: 1px solid #000;
+    padding: 4px 8px;
+    font-size: 12pt;
+  }
+  .tf-table th {
+    background: #f8fafc;
+    text-align: center;
+  }
+  .tf-table td:nth-child(2), .tf-table td:nth-child(3) {
+    text-align: center;
+    width: 65px;
+  }
+
+  /* Short Answer Box */
+  .sa-answer-box {
+    margin-top: 6px;
+    padding: 6px 12px;
+    border: 1px dashed #444;
+    display: inline-block;
+    font-size: 11pt;
+    background: #fafafa;
+  }
+  .sa-answer-box strong { font-weight: bold; }
+
+  /* End of exam line */
+  .exam-footer {
+    text-align: center;
+    font-weight: bold;
+    margin: 28px 0 16px;
+    border-top: 1px solid #000;
+    padding-top: 12px;
+    font-size: 12pt;
+  }
+
+  /* Answer Section */
+  .ans-key-section {
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 2px dashed #2563eb;
+    page-break-before: always;
+  }
+  .ans-title {
+    text-align: center;
+    font-size: 15pt;
+    font-weight: bold;
+    color: #1e3a8a;
+    margin-bottom: 12px;
+  }
+  .ans-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  .ans-table th, .ans-table td {
+    border: 1px solid #cbd5e1;
+    padding: 6px 10px;
+    text-align: center;
+    font-size: 11pt;
+  }
+  .ans-table th {
+    background: #0f2b48;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  @media print {
+    body { background: #fff; font-size: 12.5pt; }
+    .no-print-bar { display: none !important; }
+    .paper-wrap { margin: 0; padding: 0; box-shadow: none; max-width: 100%; }
+    .ans-key-section.hide-print { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation Bar (Hidden when printing) -->
+<div class="no-print-bar">
+  <div class="bar-title">
+    <span>luyenthicaptoc.vn</span>
+    <span class="badge-tag">ĐỀ THI THỬ CHUẨN 2026</span>
+    <span>Môn Toán — Mã đề 101</span>
+  </div>
+  <div class="btn-group">
+    <a href="Danh_Sach_De_Thi_In_San.html" class="btn btn-back">&larr; Danh Sách Đề In</a>
+    <a href="Phieu_Tra_Loi_Trac_Nghiem_Chuan_Bo_GDDT.html" target="_blank" class="btn btn-docx">Phiếu Tô Trắc Nghiệm</a>
+    <a href="De_Thi_Thu_Toan_2026_MaDe101.docx" download class="btn btn-docx">Tải Bản Word (.docx)</a>
+    <button onclick="toggleAnswer()" class="btn btn-ans" id="btnAnsToggle">Ẩn/Hiện Đáp Án</button>
+    <button onclick="window.print()" class="btn btn-print">In Ngay (Ctrl + P)</button>
+  </div>
+</div>
+
+<div class="paper-wrap">
+  <!-- Exam Header -->
+  <table class="header-table">
+    <tr>
+      <td class="header-left">
+        <strong>BỘ GIÁO DỤC VÀ ĐÀO TẠO</strong>
+        <strong>HỆ THỐNG LUYỆN THI CẤP TỐC</strong>
+        <div class="sub">(Đề thi thử định dạng chuẩn hóa 2026)</div>
+        <div style="margin-top: 4px; font-weight: bold; font-size: 11pt;">ĐỀ THI CHÍNH THỨC</div>
+      </td>
+      <td class="header-right">
+        <strong>KỲ THI TỐT NGHIỆP TRUNG HỌC PHỔ THÔNG NĂM 2026</strong>
+        <div class="exam-title">Bài thi: TOÁN HỌC</div>
+        <div class="exam-time">Thời gian làm bài: 90 phút, không kể thời gian phát đề</div>
+        <div><span class="exam-code">Mã đề thi: 101</span></div>
+      </td>
+    </tr>
+  </table>
+
+  <div class="divider-double"></div>
+
+  <!-- Student Info -->
+  <div class="student-box">
+    <div>Họ và tên thí sinh: <span></span></div>
+    <div>Số báo danh: <span></span></div>
+    <div>Phòng thi: <span></span></div>
+  </div>
+
+  <!-- ================= PHẦN I ================= -->
+  <div class="part-title">PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn</div>
+  <div class="part-desc">Thí sinh trả lời từ câu 1 đến câu 12. Mỗi câu hỏi thí sinh chỉ chọn một phương án.</div>
+
+  <!-- Câu 1 -->
+  <div class="q-item">
+    <span class="q-num">Câu 1:</span> Cho hàm số (y = rac{x - 1}{x^2 - 1}). Tìm số đường tiệm cận đứng của đồ thị hàm số đã cho.
+    <div class="q-options">
+      <div class="opt"><strong>A.</strong> 1 đường.</div>
+      <div class="opt"><strong>B.</strong> 2 đường.</div>
+      <div class="opt"><strong>C.</strong> 0 đường.</div>
+      <div class="opt"><strong>D.</strong> 3 đường.</div>
+    </div>
+  </div>
+
+  <!-- Câu 2 -->
+  <div class="q-item">
+    <span class="q-num">Câu 2:</span> Tìm điểm cực đại của hàm số (y = -x^3 + 3x).
+    <div class="q-options">
+      <div class="opt"><strong>A.</strong> (x = 1).</div>
+      <div class="opt"><strong>B.</strong> (x = -1).</div>
+      <div class="opt"><strong>C.</strong> (x = 0).</div>
+      <div class="opt"><strong>D.</strong> (x = 2).</div>
+    </div>
+  </div>
+
+  <!-- Câu 3 -->
+  <div class="q-item">
+    <span class="q-num">Câu 3:</span> Cho hàm số (y = ax^4 + bx^2 + c) có đồ thị là đường cong hình chữ W. Mệnh đề nào sau đây đúng?
+    <div class="q-options">
+      <div class="opt"><strong>A.</strong> (a > 0, b < 0).</div>
+      <div class="opt"><strong>B.</strong> (a < 0, b > 0).</div>
+      <div class="opt"><strong>C.</strong> (a > 0, b > 0).</div>
+      <div class="opt"><strong>D.</strong> (a < 0, b < 0).</div>
+    </div>
+  </div>
+
+  <!-- Câu 4 -->
+  <div class="q-item">
+    <span class="q-num">Câu 4:</span> Họ tất cả các nguyên hàm của hàm số (f(x) = rac{1}{sin^2 x}) trên các khoảng xác định là:
+    <div class="q-options">
+      <div class="opt"><strong>A.</strong> (	an x + C).</div>
+      <div class="opt"><strong>B.</strong> (rac{1}{sin x} + C).</div>
+      <div class="opt"><strong>C.</strong> (cot x + C).</div>
+      <div class="opt"><strong>D.</strong> (-cot x + C).</div>
+    </div>
+  </div>
+
+  <!-- Câu 5 -->
+  <div class="q-item">
+    <span class="q-num">Câu 5:</span> Cho cấp số cộng ((u_n)), biết (u_1 = 4) và (u_2 = 8). Tìm số hạng thứ 100 của cấp số cộng đó.
+    <div class="q-options">
+      <div class="opt"><strong>A.</strong> 400.</div>
+      <div class="opt"><strong>B.</strong> 102.</div>
+      <div class="opt"><strong>C.</strong> 100.</div>
+      <div class="opt"><strong>D.</strong> 104.</div>
+    </div>
+  </div>
+
+  <!-- Câu 6 -->
+  <div class="q-item">
+    <span class="q-num">Câu 6:</span> Trong không gian (Oxyz), cho mặt phẳng ((P): 3x - y - z + 2 = 0). Một vectơ pháp tuyến của ((P)) là:
+    <div class="q-options">
+      <div class="opt"><strong>A.</strong> ((-1; -1; 2)).</div>
+      <div class="opt"><strong>B.</strong> ((3; -1; 2)).</div>
+      <div class="opt"><strong>C.</strong> ((3; -1; -1)).</div>
+      <div class="opt"><strong>D.</strong> ((3; 1; 1)).</div>
+    </div>
+  </div>
+
+  <!-- Câu 7 -->
+  <div class="q-item">
+    <span class="q-num">Câu 7:</span> Tập nghiệm của bất phương trình (log_2(x - 1) < 3) là:
+    <div class="q-options">
+      <div class="opt"><strong>A.</strong> ((1; 9)).</div>
+      <div class="opt"><strong>B.</strong> ((1; 8)).</div>
+      <div class="opt"><strong>C.</strong> ((-infty; 9)).</div>
+      <div class="opt"><strong>D.</strong> ((9; +infty)).</div>
+    </div>
+  </div>
+
+  <!-- Câu 8 -->
+  <div class="q-item">
+    <span class="q-num">Câu 8:</span> Tính diện tích hình phẳng giới hạn bởi đồ thị hàm số (y = x^2) và trục hoành từ (x = 0) đến (x = 3).
+    <div class="q-options">
+      <div class="opt"><strong>A.</strong> 9.</div>
+      <div class="opt"><strong>B.</strong> 3.</div>
+      <div class="opt"><strong>C.</strong> 27.</div>
+      <div class="opt"><strong>D.</strong> 6.</div>
+    </div>
+  </div>
+
+  <!-- Câu 9 -->
+  <div class="q-item">
+    <span class="q-num">Câu 9:</span> Tiệm cận ngang của đồ thị hàm số (y = rac{2x - 1}{x + 1}) là đường thẳng:
+    <div class="q-options">
+      <div class="opt"><strong>A.</strong> (y = 2).</div>
+      <div class="opt"><strong>B.</strong> (y = -1).</div>
+      <div class="opt"><strong>C.</strong> (x = -1).</div>
+      <div class="opt"><strong>D.</strong> (x = 2).</div>
+    </div>
+  </div>
+
+  <!-- Câu 10 -->
+  <div class="q-item">
+    <span class="q-num">Câu 10:</span> Cho hình nón có bán kính đáy (r = 3) và chiều cao (h = 4). Thể tích của khối nón đã cho bằng:
+    <div class="q-options">
+      <div class="opt"><strong>A.</strong> (12pi).</div>
+      <div class="opt"><strong>B.</strong> (36pi).</div>
+      <div class="opt"><strong>C.</strong> (16pi).</div>
+      <div class="opt"><strong>D.</strong> (48pi).</div>
+    </div>
+  </div>
+
+  <!-- Câu 11 -->
+  <div class="q-item">
+    <span class="q-num">Câu 11:</span> Trong mặt phẳng tọa độ (Oxy), điểm biểu diễn số phức (z = 3 - 2i) là điểm:
+    <div class="q-options">
+      <div class="opt"><strong>A.</strong> (M(3; -2)).</div>
+      <div class="opt"><strong>B.</strong> (N(3; 2)).</div>
+      <div class="opt"><strong>C.</strong> (P(-2; 3)).</div>
+      <div class="opt"><strong>D.</strong> (Q(-3; 2)).</div>
+    </div>
+  </div>
+
+  <!-- Câu 12 -->
+  <div class="q-item">
+    <span class="q-num">Câu 12:</span> Nghiệm của phương trình (log_3(2x - 1) = 2) là:
+    <div class="q-options">
+      <div class="opt"><strong>A.</strong> (x = 5).</div>
+      <div class="opt"><strong>B.</strong> (x = 9).</div>
+      <div class="opt"><strong>C.</strong> (x = 4,5).</div>
+      <div class="opt"><strong>D.</strong> (x = 3,5).</div>
+    </div>
+  </div>
+
+  <!-- ================= PHẦN II ================= -->
+  <div class="part-title">PHẦN II. Câu trắc nghiệm đúng sai</div>
+  <div class="part-desc">Thí sinh trả lời từ câu 1 đến câu 4. Trong mỗi ý a), b), c), d) ở mỗi câu, thí sinh chọn đúng hoặc sai.</div>
+
+  <!-- Câu 1 Đúng Sai -->
+  <div class="q-item">
+    <span class="q-num">Câu 1:</span> Cho hàm số (f(x) = x^3 - 3x^2 + 2). Xét tính đúng sai của các mệnh đề sau:
+    <table class="tf-table">
+      <thead>
+        <tr><th>Phát biểu</th><th>Đúng</th><th>Sai</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>a) Đồ thị hàm số có điểm cực đại là ((0; 2)).</td><td></td><td></td></tr>
+        <tr><td>b) Hàm số nghịch biến trên khoảng ((0; 2)).</td><td></td><td></td></tr>
+        <tr><td>c) Đồ thị hàm số đi qua điểm (M(1; 1)).</td><td></td><td></td></tr>
+        <tr><td>d) Phương trình (f(x) = 0) có đúng 3 nghiệm thực phân biệt.</td><td></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Câu 2 Đúng Sai -->
+  <div class="q-item">
+    <span class="q-num">Câu 2:</span> Trong không gian (Oxyz), cho đường thẳng (d: rac{x-1}{2} = rac{y+2}{-1} = rac{z}{3}) và mặt phẳng ((P): x + 2y - z + 3 = 0). Xét tính đúng sai của các khẳng định sau:
+    <table class="tf-table">
+      <thead>
+        <tr><th>Phát biểu</th><th>Đúng</th><th>Sai</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>a) Đường thẳng (d) đi qua điểm (M(1; -2; 0)).</td><td></td><td></td></tr>
+        <tr><td>b) Một vectơ chỉ phương của (d) là (ec{u} = (2; -1; 3)).</td><td></td><td></td></tr>
+        <tr><td>c) Đường thẳng (d) song song với mặt phẳng ((P)).</td><td></td><td></td></tr>
+        <tr><td>d) Giao điểm của đường thẳng (d) và mặt phẳng ((P)) là (I(1; -2; 0)).</td><td></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Câu 3 Đúng Sai -->
+  <div class="q-item">
+    <span class="q-num">Câu 3:</span> Cho hình chóp (S.ABCD) có đáy (ABCD) là hình vuông cạnh (a), (SA) vuông góc với mặt phẳng đáy và (SA = a). Xét các khẳng định sau:
+    <table class="tf-table">
+      <thead>
+        <tr><th>Phát biểu</th><th>Đúng</th><th>Sai</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>a) Thể tích khối chóp (S.ABCD) bằng (a^3).</td><td></td><td></td></tr>
+        <tr><td>b) Đường thẳng (BD) vuông góc với mặt phẳng ((SAC)).</td><td></td><td></td></tr>
+        <tr><td>c) Góc giữa đường thẳng (SD) và mặt phẳng ((ABCD)) bằng (45^circ).</td><td></td><td></td></tr>
+        <tr><td>d) Khoảng cách giữa hai đường thẳng chéo nhau (SB) và (CD) bằng (a).</td><td></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Câu 4 Đúng Sai -->
+  <div class="q-item">
+    <span class="q-num">Câu 4:</span> Cho số phức (z) thỏa mãn (|z - 1 - i| = 2). Xét tính đúng sai của các mệnh đề sau:
+    <table class="tf-table">
+      <thead>
+        <tr><th>Phát biểu</th><th>Đúng</th><th>Sai</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>a) Tập hợp các điểm biểu diễn số phức (z) trong mặt phẳng phức là đường tròn tâm (I(1; 1)), bán kính (R = 2).</td><td></td><td></td></tr>
+        <tr><td>b) Giá trị lớn nhất của môđun (|z|) bằng (2 + sqrt{2}).</td><td></td><td></td></tr>
+        <tr><td>c) Số phức (z = 1 + 3i) thỏa mãn phương trình điều kiện đã cho.</td><td></td><td></td></tr>
+        <tr><td>d) Phần thực của số phức (z) luôn là một số thực dương.</td><td></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ================= PHẦN III ================= -->
+  <div class="part-title">PHẦN III. Câu trắc nghiệm trả lời ngắn</div>
+  <div class="part-desc">Thí sinh trả lời từ câu 1 đến câu 6. Điền kết quả là một số nguyên hoặc số thập phân vào ô trả lời.</div>
+
+  <!-- Câu 1 TLN -->
+  <div class="q-item">
+    <span class="q-num">Câu 1:</span> Cho hàm số (y = f(x)) liên tục trên (mathbb{R}). Biết diện tích hình phẳng giới hạn bởi đồ thị (y = f(x)), trục hoành và hai đường thẳng (x = 0, x = 3) là (S = 8). Tính tích phân (I = int_0^3 |f(x)| dx).
+    <div class="sa-answer-box">Đáp số của thí sinh: ............................................................</div>
+  </div>
+
+  <!-- Câu 2 TLN -->
+  <div class="q-item">
+    <span class="q-num">Câu 2:</span> Tìm giá trị lớn nhất (M) của hàm số (y = x^3 - 3x) trên đoạn ([0; 2]).
+    <div class="sa-answer-box">Đáp số của thí sinh: ............................................................</div>
+  </div>
+
+  <!-- Câu 3 TLN -->
+  <div class="q-item">
+    <span class="q-num">Câu 3:</span> Cho hình chóp tứ giác đều (S.ABCD) có cạnh đáy bằng 2, cạnh bên bằng (sqrt{6}). Tính chiều cao (h) của hình chóp đã cho.
+    <div class="sa-answer-box">Đáp số của thí sinh: ............................................................</div>
+  </div>
+
+  <!-- Câu 4 TLN -->
+  <div class="q-item">
+    <span class="q-num">Câu 4:</span> Tìm số giao điểm của đồ thị hàm số (y = x^3 - 3x^2) và trục hoành.
+    <div class="sa-answer-box">Đáp số của thí sinh: ............................................................</div>
+  </div>
+
+  <!-- Câu 5 TLN -->
+  <div class="q-item">
+    <span class="q-num">Câu 5:</span> Chọn ngẫu nhiên một số nguyên dương nhỏ hơn 11. Tính xác suất để số được chọn là số nguyên tố. (Viết kết quả dưới dạng số thập phân, ví dụ: 0.4).
+    <div class="sa-answer-box">Đáp số của thí sinh: ............................................................</div>
+  </div>
+
+  <!-- Câu 6 TLN -->
+  <div class="q-item">
+    <span class="q-num">Câu 6:</span> Trong không gian (Oxyz), cho hai điểm (A(1; 2; -1)) và (B(3; 0; 3)). Tìm hoành độ trung điểm (M) của đoạn thẳng (AB).
+    <div class="sa-answer-box">Đáp số của thí sinh: ............................................................</div>
+  </div>
+
+  <div class="exam-footer">
+    ---------- HẾT ----------<br>
+    <small style="font-weight: normal; font-style: italic;">(Thí sinh không được sử dụng tài liệu. Cán bộ coi thi không giải thích gì thêm)</small>
+  </div>
+
+  <!-- Answer Key Section -->
+  <div class="ans-key-section" id="ansKeyBox">
+    <div class="ans-title">ĐÁP ÁN & HƯỚNG DẪN CHẤM THỬ NGHIỆM (MÃ ĐỀ 101)</div>
+
+    <strong style="display:block; margin: 10px 0 4px;">PHẦN I: Trắc nghiệm 4 lựa chọn (Mỗi câu đúng 0,25 điểm)</strong>
+    <table class="ans-table">
+      <tr>
+        <th>Câu</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th>
+      </tr>
+      <tr>
+        <td style="font-weight:bold;">Đ/A</td>
+        <td>A</td><td>A</td><td>A</td><td>D</td><td>A</td><td>C</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td>
+      </tr>
+    </table>
+
+    <strong style="display:block; margin: 10px 0 4px;">PHẦN II: Trắc nghiệm Đúng/Sai (Đúng 1 ý 0.1đ, 2 ý 0.25đ, 3 ý 0.5đ, 4 ý 1.0đ)</strong>
+    <table class="ans-table">
+      <tr>
+        <th>Câu</th><th>Ý a</th><th>Ý b</th><th>Ý c</th><th>Ý d</th>
+      </tr>
+      <tr><td>Câu 1</td><td>Đúng</td><td>Đúng</td><td>Sai</td><td>Đúng</td></tr>
+      <tr><td>Câu 2</td><td>Đúng</td><td>Đúng</td><td>Sai</td><td>Đúng</td></tr>
+      <tr><td>Câu 3</td><td>Sai</td><td>Đúng</td><td>Đúng</td><td>Đúng</td></tr>
+      <tr><td>Câu 4</td><td>Đúng</td><td>Đúng</td><td>Đúng</td><td>Sai</td></tr>
+    </table>
+
+    <strong style="display:block; margin: 10px 0 4px;">PHẦN III: Trả lời ngắn (Mỗi câu đúng 0,5 điểm)</strong>
+    <table class="ans-table">
+      <tr>
+        <th>Câu</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th>
+      </tr>
+      <tr>
+        <td style="font-weight:bold;">Đ/A</td>
+        <td>8</td><td>2</td><td>2</td><td>2</td><td>0.4</td><td>2</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<script>
+  function toggleAnswer() {
+    const box = document.getElementById('ansKeyBox');
+    const btn = document.getElementById('btnAnsToggle');
+    if (box.style.display === 'none') {
+      box.style.display = 'block';
+      btn.innerText = 'Ẩn Đáp Án';
+    } else {
+      box.style.display = 'none';
+      btn.innerText = 'Hiện Đáp Án';
+    }
+  }
+</script>
+</body>
+</html>

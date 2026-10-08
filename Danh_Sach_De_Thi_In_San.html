@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trung Tâm Đề Thi In Sẵn (Props Thuyết Trình) — luyenthicaptoc.vn</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1a73e8;
+    --primary-dark: #0d47a1;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #0f172a;
+    --muted: #64748b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.6;
+  }
+  .top-header {
+    background: #0f2b48;
+    color: #fff;
+    padding: 24px 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .header-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .site-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .brand-logo {
+    width: 44px; height: 44px;
+    background: #2563eb;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 20px;
+  }
+  .top-header h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 800;
+  }
+  .top-header p {
+    margin: 4px 0 0;
+    font-size: 14px;
+    color: #94a3b8;
+  }
+  .quick-links {
+    display: flex;
+    gap: 12px;
+  }
+  .btn-nav {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    transition: all .2s;
+  }
+  .btn-nav:hover { background: rgba(255,255,255,0.22); }
+  .btn-nav.highlight { background: #2563eb; }
+  .btn-nav.highlight:hover { background: #1d4ed8; }
+
+  /* Main content */
+  .main-body {
+    padding: 40px 24px;
+  }
+  .intro-card {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border: 1px solid #bfdbfe;
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-bottom: 36px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .intro-icon {
+    font-size: 32px;
+    line-height: 1;
+  }
+  .intro-text h3 {
+    margin: 0 0 6px;
+    font-size: 18px;
+    color: #1e40af;
+    font-weight: 800;
+  }
+  .intro-text p {
+    margin: 0;
+    font-size: 15px;
+    color: #1e3a8a;
+  }
+
+  .grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+  }
+  .exam-card {
+    background: var(--card);
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .exam-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px -3px rgba(0,0,0,0.08);
+    border-color: #cbd5e1;
+  }
+  .card-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .badge-blue { background: #e0f2fe; color: #0284c7; }
+  .badge-red { background: #fee2e2; color: #dc2626; }
+  .badge-green { background: #dcfce7; color: #16a34a; }
+
+  .exam-card h2 {
+    font-size: 19px;
+    font-weight: 800;
+    margin: 0 0 8px;
+    color: #0f172a;
+  }
+  .exam-meta {
+    font-size: 13.5px;
+    color: var(--muted);
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .exam-meta span strong { color: #334155; }
+  .exam-desc {
+    font-size: 14px;
+    color: #475569;
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+
+  .card-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 16px;
+  }
+  .btn-act {
+    flex: 1;
+    text-align: center;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all .2s;
+  }
+  .btn-act.primary {
+    background: #2563eb;
+    color: #fff;
+  }
+  .btn-act.primary:hover { background: #1d4ed8; }
+  .btn-act.secondary {
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid #e2e8f0;
+  }
+  .btn-act.secondary:hover { background: #e2e8f0; }
+  .btn-act.success {
+    background: #16a34a;
+    color: #fff;
+  }
+  .btn-act.success:hover { background: #15803d; }
+</style>
+</head>
+<body>
+
+<header class="top-header">
+  <div class="container header-flex">
+    <div class="site-brand">
+      <div class="brand-logo">LT</div>
+      <div>
+        <h1>Kho Đề Thi Thử In Sẵn (Props Thuyết Trình A4)</h1>
+        <p>Hệ thống đề thi chuẩn hóa & Phiếu tô trắc nghiệm chuẩn Bộ GD&ĐT 2026</p>
+      </div>
+    </div>
+    <div class="quick-links">
+      <a href="Pitch_Deck_Elearning_MercyTech.html" class="btn-nav">Mở Slide Pitch Deck</a>
+      <a href="Kich_Ban_Thuyet_Trinh_Pitch_Deck_7Phut_ThalicVoice_Docs.html" class="btn-nav highlight">Mở Kịch Bản 7 Phút</a>
+    </div>
+  </div>
+</header>
+
+<main class="main-body">
+  <div class="container">
+    
+    <div class="intro-card">
+      <div class="intro-icon">🖨️</div>
+      <div class="intro-text">
+        <h3>Hướng Dẫn In Đạo Cụ Thuyết Trình Sân Khấu (Thalic Voice Level 3)</h3>
+        <p>Để thực hiện màn phá băng tại <strong>phút 1:15 (Chặng C — Biến cố xấp đề in)</strong>, anh hãy bấm <strong>"Xem & In A4 (Ctrl + P)"</strong> ở Đề 1 và Phiếu Tô Trắc Nghiệm. In ra khoảng 5-10 bản kẹp chung thành một xấp dày cộp trên tay. Khi bước lên sân khấu, anh gửi tặng trực tiếp 1-2 bản cho Ban giám khảo để tạo ấn tượng xúc giác mạnh mẽ nhất!</p>
+      </div>
+    </div>
+
+    <div class="grid-cards">
+      
+      <!-- Card 1: Đề Toán 101 -->
+      <div class="exam-card">
+        <div>
+          <span class="card-badge badge-blue">Đề Thi Trọng Tâm (Prop 01)</span>
+          <h2>Đề Thi Thử Tốt Nghiệp THPT — Môn Toán</h2>
+          <div class="exam-meta">
+            <span><strong>Mã đề:</strong> 101 (Chuẩn cấu trúc Bộ GD&ĐT 2026)</span>
+            <span><strong>Số câu:</strong> 22 câu (Phần I: 12 câu, Phần II: 4 câu, Phần III: 6 câu)</span>
+            <span><strong>Thời gian:</strong> 90 phút (Kèm bảng đáp án chi tiết)</span>
+          </div>
+          <div class="exam-desc">
+            Đề thi mẫu hoàn chỉnh bám sát 100% form thi trắc nghiệm mới nhất của Bộ GD&ĐT. Định dạng chia cột Times New Roman chuẩn chỉ, có sẵn Quốc hiệu tiêu ngữ và khung thông tin thí sinh.
+          </div>
+        </div>
+        <div class="card-actions">
+          <a href="De_Thi_Thu_Toan_2026_MaDe101_Chuan_Bo_GDDT.html" target="_blank" class="btn-act primary">Xem & In A4 (Ctrl + P)</a>
+          <a href="De_Thi_Thu_Toan_2026_MaDe101.docx" download class="btn-act secondary">Tải File Word (.docx)</a>
+        </div>
+      </div>
+
+      <!-- Card 2: Phiếu Tô Trắc Nghiệm -->
+      <div class="exam-card">
+        <div>
+          <span class="card-badge badge-red">Đạo Cụ Sân Khấu (Prop 02)</span>
+          <h2>Phiếu Trả Lời Trắc Nghiệm Chuẩn Bộ GD&ĐT</h2>
+          <div class="exam-meta">
+            <span><strong>Khổ giấy:</strong> A4 dọc chuẩn thi quốc gia</span>
+            <span><strong>Định dạng:</strong> Khung tô SBD, Mã đề 101, Ô tô chì 2B</span>
+            <span><strong>Đầy đủ:</strong> Cả 3 phần (Trắc nghiệm, Đúng/Sai, Điền số)</span>
+          </div>
+          <div class="exam-desc">
+            Phiếu tô trắc nghiệm chuẩn mẫu mới nhất. In ra phát kèm đề thi A4 giúp Ban giám khảo và người nghe cảm nhận ngay trải nghiệm thi thật của học sinh.
+          </div>
+        </div>
+        <div class="card-actions">
+          <a href="Phieu_Tra_Loi_Trac_Nghiem_Chuan_Bo_GDDT.html" target="_blank" class="btn-act success">Xem & In Phiếu Tô A4</a>
+        </div>
+      </div>
+
+      <!-- Card 3: Đề ĐGNL ĐHQG -->
+      <div class="exam-card">
+        <div>
+          <span class="card-badge badge-green">Hợp Tác ĐHQG (Prop 03)</span>
+          <h2>Đề Khảo Sát ĐGNL ĐHQG (HSA-2026)</h2>
+          <div class="exam-meta">
+            <span><strong>Chuyên đề:</strong> Tư duy Định lượng & Phân tích số liệu</span>
+            <span><strong>Đơn vị:</strong> Dữ liệu liên kết khảo sát cùng các trường ĐH lớn</span>
+            <span><strong>Hình thức:</strong> Câu hỏi thực tiễn, ma trận chẩn đoán AI</span>
+          </div>
+          <div class="exam-desc">
+            Đề thi đánh giá năng lực tích hợp câu hỏi mô hình hóa thực tế và xử lý bảng biểu. Minh chứng sống động cho Slide 11 (Mạng lưới hợp tác VNU, HUST, NEU...).
+          </div>
+        </div>
+        <div class="card-actions">
+          <a href="De_Thi_DGNL_2026_Dinh_Luong_Logic_VNU.html" target="_blank" class="btn-act primary">Xem & In Đề ĐGNL</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+</body>
+</html>
