@@ -885,15 +885,18 @@ body:hover #fs{opacity:1}
     hud.notes.innerHTML='<small>Slide '+(cur+1)+' · khoảng '+m+':'+s+'</small>'+(slides[cur].dataset.note||'');
   }
 
-  /* Auto-stepping config: animation tự động chạy tuần tự khi vào slide */
+  /* Slide 2 (index 1): Bấm click từng bước thủ công để người thuyết trình kịp dẫn dắt câu chuyện cảm xúc */
+  var manualStepSlides = { 1: true };
+
+  /* Auto-stepping config: animation tự động chạy tuần tự khi vào slide (cho Slide 7, 8, 10...) */
   var autoStepDelays = {
-    1: [700, 2100, 3500, 4900, 6300, 7700], // Slide 2: 6 thẻ câu chuyện học sinh & Cụt đổi pose
     6: [500, 2000, 3500, 5000],             // Slide 7: 4 bước Sổ lỗi sai + spotlight di chuyển
     7: [500, 3800, 7200],                   // Slide 8: 3 lượt chat Cụt 3D gõ tin nhắn
     9: [800, 2600]                          // Slide 10: hiện ví dụ 199k countUp rồi hiện các gói thu
   };
 
   function startAutoSteps(slideIdx){
+    if(manualStepSlides[slideIdx]) return;
     var total = maxSteps(slideIdx);
     if(total <= 0) return;
     var delays = autoStepDelays[slideIdx];
@@ -938,13 +941,27 @@ body:hover #fs{opacity:1}
     updateHud();
     try{history.replaceState(null,'','#'+(cur+1))}catch(e){}
 
-    if(step===0 && maxSteps(cur)>0){
+    if(step===0 && maxSteps(cur)>0 && !manualStepSlides[cur]){
       startAutoSteps(cur);
     }
   }
   function maxSteps(i){return +slides[i].dataset.steps||0}
-  function next(){ if(cur<slides.length-1){go(cur+1,0,1)} }
-  function prev(){ if(cur>0){go(cur-1,0,-1)} }
+  function next(){
+    if(manualStepSlides[cur] && step < maxSteps(cur)){
+      step++;
+      applySteps(false);
+    } else if(cur < slides.length - 1){
+      go(cur + 1, 0, 1);
+    }
+  }
+  function prev(){
+    if(manualStepSlides[cur] && step > 0){
+      step--;
+      applySteps(true);
+    } else if(cur > 0){
+      go(cur - 1, manualStepSlides[cur - 1] ? maxSteps(cur - 1) : 0, -1);
+    }
+  }
 
   /* keyboard */
   addEventListener('keydown',function(e){
